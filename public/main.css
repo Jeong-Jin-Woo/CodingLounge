@@ -106,3 +106,29 @@ input[type='text'], input[type='email'], input[type='password'], textarea {
 #join-form { padding: 10px; text-align: center; }
 #hashtag-form { text-align: right; }
 footer { text-align: center; }
+/* post-hashtag 추가 */
+.post-hashtag {
+  float: left;
+  margin-right: 10px;
+}
+
+/* code-area 추가 */
+.code-area {
+  margin: 10px;
+  background: black;
+  color : white;
+}
+/* box 추가 */
+.box {
+  width: 100px;
+  height: 100px; 
+  border-radius: 70%;
+  overflow: hidden;
+}
+/* profile-img 추가 */
+.profile-img {
+  float: left;
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+}

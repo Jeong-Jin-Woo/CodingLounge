@@ -20,6 +20,18 @@ router.get('/join', isNotLoggedIn, (req, res) => {
   res.render('join', { title: 'Join to - prj-name' });
 });
 
+router.get('/login', isNotLoggedIn, (req, res) => {
+  res.render('login', { title: 'login to - prj-name' });
+});
+
+router.get('/post', isNotLoggedIn, (req, res) => {
+  res.render('post', { title: 'post' });
+});
+
+router.get('/insert', isNotLoggedIn, (req, res) => {
+  res.render('insert', { title: 'post' });
+});
+
 router.get('/', async (req, res, next) => {
   try {
     const posts = await Post.findAll({
