@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "wf2",
-    "password": "webframework2",
+    "username": "root",
+    "password": "chlwp113",
     "database": "prj-maindb",
     "host": "127.0.0.1",
     "dialect": "mysql"

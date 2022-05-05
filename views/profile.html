@@ -1,8 +1,18 @@
-{% extends 'layout.html' %}
+{% extends 'profileInfo.html' %}
 
 {% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="../public/profile.css">
+  </head>
+<body>
   <div class="timeline">
-    <div class="followings half">
+    <div class="followings half">    
       <h2>팔로잉 목록</h2>
       {% if user.Followings %}
         {% for following in user.Followings %}
@@ -19,4 +29,6 @@
       {% endif %}
     </div>
   </div>
+  </body>
+  </html>
 {% endblock %}

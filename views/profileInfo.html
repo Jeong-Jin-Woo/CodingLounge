@@ -5,14 +5,26 @@
     <title>{{title}}</title>
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/profileInfo.css">
   </head>
   <body>
     <div class="container">
       <div class="profile-wrap">
+        
         <div class="profile">
+        <div class="profilePic"></div>
           {% if user and user.id %}
-            <div class="user-name">{{'안녕하세요! ' + user.nick + '님'}}</div>
+          <div class="profileInfo">
+            <div class="user-name-container">
+              <div class="user-name">{{user.nick}}</div>
+              <div>
+              <input id="my-id" type="hidden" value="{{user.id}}">
+              <a id="my-profile" href="/profile" class="btn">내 프로필</a>
+              <a id="logout" href="/auth/logout" class="btn">로그아웃</a>
+            </div>
+            </div>
+          <div class="profileFollowFollowing">
+            <div class="profileFollowing-container">     
             <div class="half">
               <div>팔로잉</div>
               <div class="count following-count">{{followingCount}}</div>
@@ -21,9 +33,9 @@
               <div>팔로워</div>
               <div class="count follower-count">{{followerCount}}</div>
             </div>
-          <input id="my-id" type="hidden" value="{{user.id}}">
-          <a id="my-profile" href="/profile" class="btn">내 프로필</a>
-          <a id="logout" href="/auth/logout" class="btn">로그아웃</a>
+           </div>
+          </div>
+        </div>
         {% else %}
           <form id="login-form" action="/auth/login" method="post">
             <div class="input-group">
