@@ -1,0 +1,73 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="timeline">
+      <h1>글쓰기</h1>
+      <div class="twit">
+        <form id="post-form" action="/postInsert">
+          <div class="input-group">
+            <label for="title">제목</label><br>
+            <input id="title" type="type" name="title" placeholder="제목 입력"><br>
+          </div>
+          <div class="input-group">
+            <label for="code">소스코드</label><br>
+            <textarea id="story" name="story" rows="5" cols="33"></textarea><br>
+          </div>
+          <div class="input-group">
+            <label for="content">설명</label><br>
+            <input id="content" type="type" name="content" placeholder="설명 입력"><br>
+          </div>
+          <div class="input-group">
+            <button id="" class="">사진첨부</button>
+          </div>
+          <div class="input-group">
+            <label>태그</label>
+            <a>Q&A</a>&nbsp;<a>JAVA</a>&nbsp;<a>C++</a>&nbsp;<a>Nodejs</a>&nbsp;<a>DB</a>
+          </div>
+          <div class="input-group">
+            <button id="" class="">등록</button>
+          </div>
+        </form>
+      </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+  <script>
+    if (document.getElementById('img')) {
+      document.getElementById('img').addEventListener('change', function(e) {
+        const formData = new FormData();
+        console.log(this, this.files);
+        formData.append('img', this.files[0]);
+        axios.post('/post/img', formData)
+          .then((res) => {
+            document.getElementById('img-url').value = res.data.url;
+            document.getElementById('img-preview').src = res.data.url;
+            document.getElementById('img-preview').style.display = 'inline';
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      });
+    }
+    document.querySelectorAll('.twit-follow').forEach(function(tag) {
+      tag.addEventListener('click', function() {
+        const myId = document.querySelector('#my-id');
+        if (myId) {
+          const userId = tag.parentNode.querySelector('.twit-user-id').value;
+          if (userId !== myId.value) {
+            if (confirm('팔로잉하시겠습니까?')) {
+              axios.post(`/user/${userId}/follow`)
+                .then(() => {
+                  location.reload();
+                })
+                .catch((err) => {
+                  console.error(err);
+                });
+            }
+          }
+        }
+      });
+    });
+  </script>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <div class="timeline">
+    <div>
+    <h1>로그인</h1>
+    <form id="login-form" action="/auth/login" method="post">
+    <div class="input-group">
+        <label for="email">아이디</label>
+        <input id="email" type="email" name="email" required autofocus>
+    </div>
+    <div class="input-group">
+        <label for="password">비밀번호</label>
+        <input id="password" type="password" name="password" required>
+    </div>
+    <div>
+        <label><input type="checkbox" name="로그인유지" value="loginCheck">로그인유지</label>
+    </div>
+    <button id="find_login" type="submit" class="btn">로그인</button>
+    <br>
+    <a>아이디찾기</a> | <a>회원가입</a>
+    </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block script %}
+<!-- FIX :: 아이디찾기, 회원가입 로그인 유효성검사추가 -->
+{% endblock %}
