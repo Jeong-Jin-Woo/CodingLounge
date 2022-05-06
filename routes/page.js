@@ -24,12 +24,13 @@ router.get('/login', isNotLoggedIn, (req, res) => {
   res.render('login', { title: 'login to - prj-name' });
 });
 
-router.get('/post', isNotLoggedIn, (req, res) => {
+router.get('/post', (req, res) => {
   res.render('post', { title: 'post' });
 });
 
 router.get('/insert', isLoggedIn, (req, res) => {
-  res.render('insert', { title: 'post' });
+  console.log("insert 호출");
+  res.render('insert', { title: 'post 작성' });
 });
 
 router.get('/', async (req, res, next) => {
