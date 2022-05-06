@@ -103,7 +103,7 @@ input[type='text'], input[type='email'], input[type='password'], textarea {
   text-align: left;
   padding: 10px;
   margin-right: 10px;
-  width:800px;
+  width:400px;
   height:150px;
   border-radius: 4px;
   border: 1px solid silver;
@@ -117,7 +117,7 @@ input[type='text'], input[type='email'], input[type='password'], textarea {
     background-color:red;
 }
 .user-name-container{ 
-    width:550px;
+    width:250px;
     margin-left:15px;
     /* background-color: orange; */
     display:flex;

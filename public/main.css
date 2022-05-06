@@ -1,14 +1,22 @@
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; height: 100%; }
+html, body { 
+  font-family: 'NanumSquare', sans-serif;
+ 
+  margin: 0; padding: 0; height: 100%; }
+a {color: #fff; text-decoration: none; outline: none
+
+}
+a:hover, a:active {text-decoration: none; color:#fff;}
+
 .btn {
   display: inline-block;
   padding: 0 5px;
   text-decoration: none;
   cursor: pointer;
   border-radius: 4px;
-  background: white;
+  background: #2E75B6;
   border: 1px solid silver;
-  color: crimson;
+  color: white;
   height: 37px;
   line-height: 37px;
   vertical-align: top;
@@ -20,10 +28,8 @@ input[type='text'], input[type='email'], input[type='password'], textarea {
   padding: 10px;
   border: 1px solid silver;
 }
-.container { width: 100%; height: 100%; }
-@media screen and (min-width: 800px) {
-  .container { width: 600px; margin: 0 auto; }
-}
+.container { width: 1000px; height: 100%; display:flex; justify-content: center; margin: 0 auto; }
+
 .input-group { margin-bottom: 15px; }
 .input-group label { width: 25%; display: inline-block; }
 .input-group input { width: 70%; }
@@ -45,29 +51,36 @@ input[type='text'], input[type='email'], input[type='password'], textarea {
   width: 100%;
   display: inline-block;
   vertical-align: top;
-  margin: 10px 0;
+ 
 }
-@media screen and (min-width: 800px) {
-  .profile-wrap { width: 290px; margin-bottom: 0; }
+@media screen and (min-width: 1000px) {
+  .profile-wrap { width: 285px; margin-bottom: 0; }
 }
 .profile {
   text-align: left;
-  padding: 10px;
+  
   margin-right: 10px;
   border-radius: 4px;
   border: 1px solid silver;
-  background: lightcoral;
+  background-color: #2E75B6;
+  height:100%;
+  
+  position:fixed;
+  
+}
+.profileTitle{
+  margin:20px;
+  /* margin-right:20px; */
 }
 .user-name { font-weight: bold; font-size: 18px; }
 .count { font-weight: bold; color: crimson; font-size: 18px; }
 .timeline {
   margin-top: 10px;
-  width: 100%;
+  width: 700px;
   display: inline-block;
   border-radius: 4px;
   vertical-align: top;
 }
-@media screen and (min-width: 800px) { .timeline { width: 500px; } }
 #twit-form {
   border-bottom: 1px solid silver;
   padding: 10px;
@@ -144,3 +157,107 @@ footer { text-align: center; }
   height: 50%;
   object-fit: cover;
 }
+.firstMenu{
+  width:100%;
+  height:40px;
+
+  background-color:#DEEBF7;
+  display:flex;
+  align-items : center;
+  justify-content : center;
+}
+.loginoutjoin-css{
+  display:flex;
+  justify-content: center;
+  width:50%;
+}
+.loginoutjoin-css > a{
+  color:black;
+}
+.menuContainer{
+  width:100%;
+  display:flex;
+  justify-content: center;
+}
+
+/*profile info 부분 시작*/
+.profileInfo{
+  width:500px;
+  height:100%;
+  display:flex;
+  /* background-color: yellow; */
+  justify-content: space-between;
+  position:relative; 
+}
+.user-name-container{ 
+  width:320px;
+  height:50px;
+  margin-left:15px;
+  background-color: orange;
+  display:flex;
+  justify-content: space-between;
+}
+.user-name { font-weight: bold; font-size: 28px; }
+.count { font-weight: bold; color: crimson; font-size: 18px; }
+.profileFollowFollowing{
+  width:500px;
+  height:45px;
+  /* background-color:blue; */
+  margin-left:20px;  
+  position:absolute;
+  right:0px;
+  bottom:0;
+}
+.profileFollowing-container{
+width:500px;
+display:flex;
+justify-content: flex-end;
+
+}
+.profileFollowing , .profileFollower{
+display:flex;
+width:130px;
+}
+.following-count {
+margin-left:20px;
+width:40px;
+/* background-color:red; */
+}
+.follower-count{
+margin-left:20px;
+width:40px;
+/* background-color:red; */
+}
+.profileWholeContainer{
+  margin-top:80px;
+  
+}
+.profileInfo{
+  border-radius:10px;
+  border:1px solid black;
+}
+.profileMenubar{
+  display:flex;
+  width:500px;
+}
+.profileMenuOption{
+  width:150px;
+}
+.profileContainer{
+  height:100%;
+  width:150px;
+}
+.profilePic{
+  
+  width:100px;
+  height:100px;
+  margin:10px;
+  margin-left:15px;
+  background-color:red;
+}
+#displayInfo{
+  width:400px;
+  height:400px;
+  background-color: red;;
+}
+/*profile info 부분 끝*/

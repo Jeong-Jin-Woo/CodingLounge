@@ -6,27 +6,34 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
   </head>
   <body>
     <div class="container">
       <div class="profile-wrap">
-        <a href="/"><h1>codingLounge</h1></a>
+       
         <div class="profile">
-            <a href="/login">sign in</a>
-            <a href="/join">sign up</a>
-            <br>
-            <button id="" class="">Q&A</button><br>
+          <div class="profileTitle"><a href="/"><h2>codingLounge</h2></a></div>
+         
+          <div class="firstMenu">
             {% if user and user.id %}
-              <button id="" class="">follow</button><br>
-              <button id="" class=""><a href="/profile">Profile</a></button>
-            {% endif %}
+            <div class="loginoutjoin-css"><a href="/auth/logout">sign out</a></div>
+            {% else %}
+            <div class="loginoutjoin-css"><a href="/login">sign in</a></div>
+          <div class="loginoutjoin-css"><a href="/join">sign up</a></div>
+           {% endif %}</div>
+         
+          <br>
+          <div class="menuContainer"><a href="">Q&A</a></div><br>
+          {% if user and user.id %}
+          <div class="menuContainer"><a href="" class="">follow</a></div><br>
+          <div class="menuContainer"><a href="/profile">Profile</a></div>
+          {% endif %}
         </div>
       </div>
       {% block content %}
       {% endblock %}
-      <footer>
-        <b>codingLounge</b> at Web Framework2 (N)
-      </footer>
+     
     </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>

@@ -1,18 +1,37 @@
-{% extends 'profileInfo.html' %}
 
-{% block content %}
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>{{title}}</title>
-    <meta name="viewport" content="width=device-width, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="../public/profile.css">
-  </head>
-<body>
-  <div class="timeline">
-    <div>
+
+
+
+  <!-- {% extends 'layout.html' %} -->
+
+  {% block content %}
+  <div class="timeline profileWholeContainer">
+  <div class="profileInfo">
+    <div class="profileContainer">
+    <div class="profilePic"></div></div>
+    <div class="user-name-container">
+      <div class="user-name">{{user.nick}}</div>
+      <div>
+      <input id="my-id" type="hidden" value="{{user.id}}">
+      <a id="my-profile" href="/profile" class="btn">내 프로필</a>
+      <a id="logout" href="/auth/logout" class="btn">로그아웃</a>
+    </div>
+    </div>
+  <div class="profileFollowFollowing">
+    <div class="profileFollowing-container">     
+    <div class="profileFollowing">
+      <div>팔로잉</div>
+      <div class="count following-count">{{followingCount}}</div>
+    </div>
+    <div class="profileFollower">
+      <div>팔로워</div>
+      <div class="count follower-count">{{followerCount}}</div>
+    </div>
+   </div>
+  </div>
+</div>
+  <div class="timeline profileMenubar">
+    <div class="profileMenuOption">
       <div onClick="showPost()">
         작성글
       </div>
@@ -23,12 +42,13 @@
         팔로우/팔로잉
       </div>
     </div>
-    <div id="display"></div>
+    <div id="displayInfo"></div>
  
   </div>
+</div>
   <script>
     function showFollowFollowing(){
-      document.getElementById('display').innerHTML=
+      document.getElementById('displayInfo').innerHTML=
       `   <div class="followings half">    
       <h2>팔로잉 목록</h2>
       {% if user.Followings %}
@@ -49,16 +69,15 @@
       `;
     }
     function showPost(){
-      document.getElementById('display').innerHTML=`
+      document.getElementById('displayInfo').innerHTML=`
         <div>작성글</div>
       `;
     }
     function showReview(){
-      document.getElementById('display').innerHTML=`
+      document.getElementById('displayInfo').innerHTML=`
       <div>작성댓글</div>
 `;
     }
   </script>
-  </body>
-  </html>
-{% endblock %}
+  {% endblock %}
+ 
