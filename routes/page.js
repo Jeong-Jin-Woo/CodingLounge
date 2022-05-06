@@ -28,7 +28,7 @@ router.get('/post', isNotLoggedIn, (req, res) => {
   res.render('post', { title: 'post' });
 });
 
-router.get('/insert', isNotLoggedIn, (req, res) => {
+router.get('/insert', isLoggedIn, (req, res) => {
   res.render('insert', { title: 'post' });
 });
 
