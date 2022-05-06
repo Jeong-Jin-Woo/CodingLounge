@@ -12,7 +12,24 @@
   </head>
 <body>
   <div class="timeline">
-    <div class="followings half">    
+    <div>
+      <div onClick="showPost()">
+        작성글
+      </div>
+      <div onClick="showReview()">
+        작성 댓글
+      </div>
+      <div onClick="showFollowFollowing()">
+        팔로우/팔로잉
+      </div>
+    </div>
+    <div id="display"></div>
+ 
+  </div>
+  <script>
+    function showFollowFollowing(){
+      document.getElementById('display').innerHTML=
+      `   <div class="followings half">    
       <h2>팔로잉 목록</h2>
       {% if user.Followings %}
         {% for following in user.Followings %}
@@ -28,7 +45,20 @@
         {% endfor %}
       {% endif %}
     </div>
-  </div>
+      
+      `;
+    }
+    function showPost(){
+      document.getElementById('display').innerHTML=`
+        <div>작성글</div>
+      `;
+    }
+    function showReview(){
+      document.getElementById('display').innerHTML=`
+      <div>작성댓글</div>
+`;
+    }
+  </script>
   </body>
   </html>
 {% endblock %}

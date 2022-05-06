@@ -1,3 +1,5 @@
+{% extends 'layout.html' %}
+
 {% block content %}
 <!DOCTYPE html>
 <html>
@@ -15,13 +17,13 @@
           <div class="join-form-container">
         `  <form id="join-form" action="/auth/join" method="post">
             <div class="input-group">     
-              <input id="join-id" type="text" placeholder="아이디" name="id"></div>
+              <input id="join-id" class="join-input" type="text" placeholder="아이디" name="id"></div>
             <div class="input-group">
-              <input id="join-email" type="email" placeholder="이메일" name="email"></div>
+              <input id="join-email" class="join-input" type="email" placeholder="이메일" name="email"></div>
             <div class="input-group">
-              <input id="join-nick" type="text" placeholder="닉네임" name="nick"></div>
+              <input id="join-nick" class="join-input" type="text" placeholder="닉네임" name="nick"></div>
             <div class="input-group">
-              <input id="join-password" type="password" placeholder="비밀번호" name="password">
+              <input id="join-password" class="join-input" type="password" placeholder="비밀번호" name="password">
             </div>
             <div class="input-group"><button id="join-btn" type="submit" class="btn">가입하기</button></div>
       </form>

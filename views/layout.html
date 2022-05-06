@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/main.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="profile-wrap">
+        <a href="/"><h1>codingLounge</h1></a>
+        <div class="profile">
+            <a href="/login">sign in</a>
+            <a href="/join">sign up</a>
+            <br>
+            <button id="" class="">Q&A</button><br>
+            {% if user and user.id %}
+              <button id="" class="">follow</button><br>
+              <button id="" class=""><a href="/profile">Profile</a></button>
+            {% endif %}
+        </div>
+      </div>
+      {% block content %}
+      {% endblock %}
+      <footer>
+        <b>codingLounge</b> at Web Framework2 (N)
+      </footer>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      window.onload = () => {
+        if (new URL(location.href).searchParams.get('loginError')) {
+          alert(new URL(location.href).searchParams.get('loginError'));
+        }
+      };
+    </script>
+    {% block script %}
+    {% endblock %}
+  </body>
+</html>
