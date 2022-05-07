@@ -13,15 +13,15 @@ router.use((req, res, next) => {
 });
 
 router.get('/profile', isLoggedIn, (req, res) => {
-  res.render('profile', { title: 'Profile - prj-name' });
+  res.render('profile', { title: '프로필' });
 });
 
 router.get('/join', isNotLoggedIn, (req, res) => {
-  res.render('join', { title: 'Join to - prj-name' });
+  res.render('join', { title: '회원가입' });
 });
 
 router.get('/login', isNotLoggedIn, (req, res) => {
-  res.render('login', { title: 'login to - prj-name' });
+  res.render('login', { title: '로그인' });
 });
 
 router.get('/post', (req, res) => {
@@ -30,7 +30,11 @@ router.get('/post', (req, res) => {
 
 router.get('/insert', isLoggedIn, (req, res) => {
   console.log("insert 호출");
-  res.render('insert', { title: 'post 작성' });
+  res.render('insert', { title: '글 작성' });
+});
+
+router.get('/profileupdate', (req, res) => {
+  res.render('profileupdate', { title: '개인정보수정' });
 });
 
 router.get('/', async (req, res, next) => {
@@ -44,7 +48,7 @@ router.get('/', async (req, res, next) => {
     });
     res.render('main', {
       title: 'prj-name',
-      twits: posts,
+      posts: posts,
     });
   } catch (err) {
     console.error(err);
@@ -52,8 +56,9 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/hashtag', async (req, res, next) => {
-  const query = req.query.hashtag;
+router.get('/hashtag/:hash', async (req, res, next) => {
+  const query = req.params.hash;
+  console.log("hashtag req:"+query);
   if (!query) {
     return res.redirect('/');
   }
@@ -65,8 +70,8 @@ router.get('/hashtag', async (req, res, next) => {
     }
 
     return res.render('main', {
-      title: `${query} | NodeBird`,
-      twits: posts,
+      title: `Q&A`,
+      posts: posts,
     });
   } catch (error) {
     console.error(error);

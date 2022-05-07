@@ -3,10 +3,10 @@ html, body {
   font-family: 'NanumSquare', sans-serif;
  
   margin: 0; padding: 0; height: 100%; }
-a {color: #fff; text-decoration: none; outline: none
+.profile a {color: #fff; text-decoration: none; outline: none
 
 }
-a:hover, a:active {text-decoration: none; color:#fff;}
+.profile a:hover, .profile a:active {text-decoration: none; color:#fff;}
 
 .btn {
   display: inline-block;
@@ -58,13 +58,11 @@ input[type='text'], input[type='email'], input[type='password'], textarea {
 }
 .profile {
   text-align: left;
-  
   margin-right: 10px;
   border-radius: 4px;
   border: 1px solid silver;
   background-color: #2E75B6;
   height:100%;
-  
   position:fixed;
   
 }
@@ -89,12 +87,13 @@ input[type='text'], input[type='email'], input[type='password'], textarea {
 }
 #img-preview { max-width: 100%; }
 #img-label {
-  float: left;
+  display: inline-block;
   cursor: pointer;
   border-radius: 4px;
-  border: 1px solid crimson;
+  border: 1px solid silver;
   padding: 0 10px;
   color: white;
+  background-color: #2E75B6;
   font-size: 12px;
   height: 37px;
   line-height: 37px;
@@ -261,3 +260,29 @@ width:40px;
   background-color: red;;
 }
 /*profile info 부분 끝*/
+
+/* hash-tag */
+.hashtag-list {
+  display: inline-block;
+  border-radius: 4px;
+  background: white;
+  border: 1px solid silver;
+  width: 100%;
+  margin : 20px 0px;
+  padding : 5px;
+}
+.hashtag-item {
+  display: inline-block;
+  padding: 0 5px;
+  margin : 5px;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 4px;
+  background: #DEEBF7;
+  border: 1px solid silver;
+  color: #2E75B6;
+  height: 30px;
+  line-height: 30px;
+  vertical-align: top;
+  font-size: 12px;
+}
