@@ -3,12 +3,20 @@ const Sequelize = require('sequelize');
 module.exports = class Post extends Sequelize.Model {
   static init(sequelize) {
     return super.init({
-      content: {
-        type: Sequelize.STRING(140),
+      post_title: {
+        type: Sequelize.STRING(255),
         allowNull: false,
       },
-      img: {
-        type: Sequelize.STRING(200),
+      code_content: {
+        type: Sequelize.TEXT('long'),
+        allowNull: false,
+      },
+      question_content: {
+        type: Sequelize.TEXT('long'),
+        allowNull: false,
+      },
+      post_img: {
+        type: Sequelize.TEXT('medium'),
         allowNull: true,
       },
     }, {
@@ -19,7 +27,7 @@ module.exports = class Post extends Sequelize.Model {
       tableName: 'posts',
       paranoid: false,
       charset: 'utf8mb4',
-      collate: 'utf8mb4_general_ci',
+      collate: 'utf8mb4_0900_ai_ci',
     });
   }
 
