@@ -9,13 +9,15 @@
     <h1>프로필</h1>
   <div class="profileInfo">
     <div class="profileContainer">
-    <div class="profilePic"></div></div>
+    <div class="profilePic">
+      <img id="profile-img" src="static/profile.jpg" style="width:130px; height:130px;">
+    </div></div>
     <div class="user-name-container">
       <div class="user-name">{{user.nick}}</div>
       <div>
       <input id="my-id" type="hidden" value="{{user.id}}">
-      <a id="my-profile" href="/profile" class="btn">내 프로필</a>
-      <a id="logout" href="/auth/logout" class="btn">로그아웃</a>
+      <a id="my-profile" href="/profileUpdate" class="btn widthbtn"><p>개인 정보 수정</p></a>
+      
     </div>
     </div>
   <div class="profileFollowFollowing">
@@ -33,14 +35,14 @@
 </div>
   <div class="timeline profileMenubar">
     <div class="profileMenuOption">
-      <div onClick="showPost()">
-        작성글
+      <div class="option" style="cursor:pointer;" onClick="showPost()">
+        <p>작성글</p>
       </div>
-      <div onClick="showReview()">
-        작성 댓글
+      <div class="option" style="cursor:pointer;" onClick="showReview()">
+        <p>작성 댓글</p>
       </div>
-      <div onClick="showFollowFollowing()">
-        팔로우/팔로잉
+      <div class="option" style="cursor:pointer;" onClick="showFollowFollowing()">
+        <p>팔로우/팔로잉</p>
       </div>
     </div>
     <div id="displayInfo"></div>

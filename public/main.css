@@ -22,6 +22,15 @@ html, body {
   vertical-align: top;
   font-size: 12px;
 }
+.widthbtn{
+  width:200px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  font-size:20px;
+  margin-right:10px;
+  
+}
 input[type='text'], input[type='email'], input[type='password'], textarea {
   border-radius: 4px;
   height: 37px;
@@ -189,20 +198,23 @@ footer { text-align: center; }
   position:relative; 
 }
 .user-name-container{ 
-  width:320px;
-  height:50px;
+  
+  width:530px;
+  height:100px;
   margin-left:15px;
-  background-color: orange;
+  margin-top:30px;
   display:flex;
   justify-content: space-between;
+  
 }
 .user-name { font-weight: bold; font-size: 28px; }
 .count { font-weight: bold; color: crimson; font-size: 18px; }
 .profileFollowFollowing{
-  width:500px;
+  width:480px;
   height:45px;
   /* background-color:blue; */
   margin-left:20px;  
+  font-size:20px;
   position:absolute;
   right:0px;
   bottom:0;
@@ -225,37 +237,43 @@ width:40px;
 .follower-count{
 margin-left:20px;
 width:40px;
+font-size:20px;
 /* background-color:red; */
 }
 
 .profileInfo{
   border-radius:10px;
   width:700px;
-  border:1px solid black;
+  height:200px;
+  border:1px solid #2E75B6;
 }
 .profileMenubar{
   display:flex;
-  width:500px;
+  width:700px;
 }
 .profileMenuOption{
+  margin-top:20px;
   width:150px;
 }
 .profileContainer{
-  height:100%;
+  height:30%;
   width:150px;
 }
 .profilePic{
   
-  width:100px;
-  height:100px;
-  margin:10px;
-  margin-left:15px;
+  width:130px;
+  height:130px;
+  border-radius:100px;
+  margin:15px;
+  margin-left:20px;
   background-color:red;
 }
 #displayInfo{
-  width:400px;
-  height:400px;
-  background-color: red;;
+  width:550px;
+  height:auto;
+  border-radius:10px;
+  border: 1px solid #2E75B6;
+
 }
 /*profile info 부분 끝*/
 
@@ -283,4 +301,14 @@ width:40px;
   line-height: 30px;
   vertical-align: top;
   font-size: 12px;
+}
+.option{
+  width:100px;
+  height:40px;
+  display:flex;
+  justify-content: flex-end;
+
+}
+.option:hover{
+  color:#2E75B6;
 }
