@@ -155,14 +155,21 @@ footer { text-align: center; }
 .box {
   width: 100px;
   height: 100px; 
-  border-radius: 70%;
+  border-radius: 100%;
+  overflow: hidden;
+}
+.box-min {
+  width: 50px;
+  height: 50px; 
+  border-radius: 100%;
+  border: 1px solid black;
   overflow: hidden;
 }
 /* profile-img 추가 */
 .profile-img {
-  float: left;
-  width: 50%;
-  height: 50%;
+  display: flex;
+  /*width: 50%;
+  height: 50%; */
   object-fit: cover;
 }
 .firstMenu{
@@ -205,7 +212,6 @@ footer { text-align: center; }
   margin-top:30px;
   display:flex;
   justify-content: space-between;
-  
 }
 .user-name { font-weight: bold; font-size: 28px; }
 .count { font-weight: bold; color: crimson; font-size: 18px; }
@@ -240,7 +246,10 @@ width:40px;
 font-size:20px;
 /* background-color:red; */
 }
-
+.profileWholeContainer{
+  margin-top:80px;
+  
+}
 .profileInfo{
   border-radius:10px;
   width:700px;
@@ -266,14 +275,13 @@ font-size:20px;
   border-radius:100px;
   margin:15px;
   margin-left:20px;
-  background-color:red;
+ background-color:red;
 }
 #displayInfo{
   width:550px;
   height:auto;
   border-radius:10px;
   border: 1px solid #2E75B6;
-
 }
 /*profile info 부분 끝*/
 
@@ -311,4 +319,105 @@ font-size:20px;
 }
 .option:hover{
   color:#2E75B6;
+}
+
+/* post profile */
+.profile-section {
+  display: flex;
+  align-items: center;
+  height: 46px;
+  margin: 2px 0 8px 0;
+}
+.profile-section img {
+  display: inline-block;
+  margin-right: 10px;
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+}
+.profile-section p {
+  display: inline-block;
+  color: #262626;
+  font-size: 16px;
+}
+.pic{
+  border-radius: 100%;
+}
+
+.comment-section {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  margin: 2px 0 8px 0;
+}
+.comment-section img {
+  display: inline-block;
+  margin-right: 5px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+}
+.comment-section p {
+  display: inline-block;
+  color: #262626;
+  font-size: 14px;
+}
+
+.pic{
+  border-radius: 100%;
+}
+
+.post-title{
+  font-size: 24px;
+  margin-top:10px;
+  margin-bottom:10px;
+}
+
+.post-code-area{
+  font-size: 24px;
+  margin-top:10px;
+  margin-bottom:10px;
+}
+
+.post-profile{
+  float: right;
+}
+
+.hashtag-title{
+  display: inline-block;
+}
+/* post화면 소스코드 css */
+pre {
+  border-radius: 5px; 
+  -moz-border-radius: 5px; 
+  -webkit-border-radius: 5px;
+  border: 1px solid #BCBEC0;
+  background: black;
+  font:12px Monaco,Consolas,"Andale  Mono","DejaVu Sans Mono",monospace;
+}
+code {
+  border-radius: 25px; 
+  -moz-border-radius: 5px; 
+  -webkit-border-radius: 5px; 
+  border: 1px solid #BCBEC0;
+  padding: 2px;
+  color:green;
+  font:12px Monaco,Consolas,"Andale  Mono","DejaVu Sans Mono",monospace
+}
+
+pre code {
+  border-radius: 0px; 
+  -moz-border-radius: 0px; 
+  -webkit-border-radius: 0px; 
+  border: 0px;
+  padding: 2px;
+  font:12px Monaco,Consolas,"Andale  Mono","DejaVu Sans Mono",monospace
+}
+
+.post-code-area .title{
+  font-size: 12px;
+}
+
+.post-content{
+  font-size: 14px;
 }

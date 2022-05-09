@@ -33,6 +33,20 @@ router.post('/img', isLoggedIn, upload.single('img'), (req, res) => {
   res.json({ url: `/img/${req.file.filename}` });
 });
 
+router.get('/:id/detail', async (req, res, next) => {
+  const post_id = req.params.id;
+  try{
+    const post = await Post.findOne({ where : { id : post_id}});
+    return res.render('post', {
+      title: `detail`,
+      post: post,
+    });
+  }catch(error){
+    console.error(error);
+  }
+});
+
+
 const upload2 = multer();
 router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
   try {

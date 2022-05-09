@@ -24,16 +24,19 @@
   <div class="twits">
     {% for post in posts %}
     <div class="twit">
+      <a href="post/{{post.id}}/detail">
       <input type="hidden" value="{{post.User.id}}" class="twit-user-id">
-      <input type="hidden" value="{{post.id}}" class="twit-id">
-      <div class="twit-author">{{post.User.nick}}</div>
-      {% if not followerIdList.includes(post.User.id) and post.User.id !== user.id %}
-        <button class="twit-follow">팔로우하기</button>
-      {% endif %}
-      <div class="twit-content">{{post.content}}</div>
-      {% if post.img %}
-        <div class="twit-img"><img src="{{post.img}}" alt="섬네일"></div>
-      {% endif %}
+      <div class="post-profile">
+        <div class="profile-section">
+          <img class="pic" src="/static/profile.jpg">
+          <p>{{post.UserId}}</p>
+        </div>
+      </div>
+      <div class="twit-author">#{{post.id}}</div>
+      <div class="twit-content">{{post.post_title}}</div>
+      
+      
+      </a>
     </div>
     {% endfor %}
   </div>

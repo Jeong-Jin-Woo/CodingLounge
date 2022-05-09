@@ -10,7 +10,6 @@
         <div class="joinTitle"><p class="joinTItleP">회원가입</p></div>     
         <div class="join-form-container">
         <form id="join-form" action="/auth/join" method="post">
-          프로필
           <div class="input-group">  
               <div class="box">
                 <div class="profile-img"><img id="main-img" src="static/profile.jpg" style="width:200%; height:auto;"></div>
@@ -19,15 +18,14 @@
               <input id="img" type="file" accept="image/*">
           </div>
           <div class="input-group">     
-            <input id="join-id" class="join-input" type="text" placeholder="아이디" name="id"></div>
-          <div class="input-group">
-            <input id="join-email" class="join-input" type="email" placeholder="이메일" name="email"></div>
+            <input id="join-id" class="join-input" type="text" placeholder="아이디" name="id">
+          </div>
           <div class="input-group">
             <input id="join-nick" class="join-input" type="text" placeholder="닉네임" name="nick"></div>
           <div class="input-group">
             <input id="join-password" class="join-input" type="password" placeholder="비밀번호" name="password">
           </div>
-          <div class="input-group"><button id="join-btn" type="submit" class="btn">가입하기</button></div>
+          <div class="input-group"><button type="button" id="join-btn" class="btn" onclick="join_check();">가입하기</button></div>
     </form>
   </div>
         </div>   
@@ -43,6 +41,7 @@
     }
   };
 
+  //이미지 업로드
   document.getElementById("img").addEventListener("change", e => {
     const input = e.target;
     if(input.files && input.files[0]) {
@@ -55,6 +54,31 @@
       reader.readAsDataURL(input.files[0]);
     }
   });
+  //항목 빈값 체크
+  function join_check(){
+    var form = document.getElementById("join-form");
+    var form_id = document.getElementById("join-id");
+    var form_nick = document.getElementById("join-nick");
+    var form_password = document.getElementById("join-password");
+
+    //아이디 체크
+    if(form_id.value == ""){
+      alert("아이디를 입력하세요");
+      form_id.focus();
+      return false;
+    }else if(form_nick.value == ""){
+      alert("닉네임을 입력하세요");
+      form_nick.focus();
+      return false;
+    }else if(form_password.value == ""){
+      alert("비밀번호를 입력하세요");
+      form_password.focus();
+      return false;
+    }
+
+    form.submit();
+    return true;
+  }
 </script>
 </html>
 {% endblock %}

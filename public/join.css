@@ -36,6 +36,12 @@ input[type='text'], input[type='email'], input[type='password'], textarea {
   .join-id{
       
   }
+input[type=password]{
+    font-family: 'Courier New', Courier, monospace;
+}
+::placeholder {
+    font-family: "NanumSquare";
+}
 .joinContainer{
     /* width:400px;
     height:400px; */
@@ -73,7 +79,7 @@ input[type='text'], input[type='email'], input[type='password'], textarea {
     margin-top:5px;
     width:85%;
 }
-.btn{
+/* .btn{
     display: inline-block;
     padding: 0 5px;
     text-decoration: none;
@@ -88,7 +94,7 @@ input[type='text'], input[type='email'], input[type='password'], textarea {
     font-size: 20px;
     border-radius:10px;
 
-}
+} */
 .joinTItleP{
 
 }
