@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <div class="timeline">
+    <div>
+    <h1>개인정보수정</h1>
+    <form id="profile-form" action="" method="post">
+        <div class="input-group">  
+            <!-- src user 프로필이미지 가져옴 -->
+            <div class="box">
+              <div class="profile-img"><img id="main-img" src="static/profile.jpg" style="width:200%; height:auto;"></div>
+            </div>
+            <label id="img-label" for="img" class>사진 업로드</label>
+            <input id="img" type="file" accept="image/*">
+        </div>
+        <!-- value에 user 프로필 항목 가져옴 -->
+        <div class="input-group">     
+          <input id="join-id" class="join-input" type="text" value="아이디" name="id" disabled></div>
+        <div class="input-group">
+          <input id="join-email" class="join-input" type="email" value="이메일" name="email"></div>
+        <div class="input-group">
+          <input id="join-nick" class="join-input" type="text" value="닉네임" name="nick"></div>
+        <div class="input-group">
+          <input id="join-password" class="join-input" type="password" value="비밀번호" name="password">
+        </div>
+        <div class="input-group"><button id="join-btn" type="submit" class="btn">가입하기</button></div>
+    </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block script %}
+<script>
+document.getElementById("img").addEventListener("change", e => {
+    const input = e.target;
+    if(input.files && input.files[0]) {
+      const reader = new FileReader()
+      reader.onload = e => {
+          const previewImage = document.getElementById("main-img")
+          previewImage.src = e.target.result
+      }
+      // reader가 이미지 읽도록 하기
+      reader.readAsDataURL(input.files[0]);
+    }
+  });
+</script>
+{% endblock %}

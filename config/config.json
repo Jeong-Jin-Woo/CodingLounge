@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "chlwp113",
-    "database": "prj-maindb",
+    "password": "USERPASSWORD",
+    "database": "codingloungedb",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },

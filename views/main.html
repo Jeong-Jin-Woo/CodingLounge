@@ -11,74 +11,31 @@
     </form>
   </div>
   <div class="twits">
-    #JAVA #C++ #C #JavaScript #Nodejs #Os <br>
-    #DB #UI/UX #보안 #HTML/CSS
+    <div class="hashtag-list">
+      <!-- SELECT 값 추가-->
+      {% set hashs = ['JAVA','C++', 'C','JavaScript','Nodejs','Os','DB','보안','HTML/CSS','test2','test3','test4'] %}  
+      <form id="hashtag-form" action="/hashtag"></form>
+      {% for hash in hashs %}
+        <a class="hashtag-item" href="/hashtag/{{hash}}">#{{hash}}</a>
+      {% endfor %}
+    </form>
+    </div>
   </div>
-  <div class="twit">
-    <input type="hidden" value="작성자" class="twit-user-id">
-    <input type="hidden" value="작성자아이디" class="twit-id">
-    <div class="twit-author"><a href="post">test</a></div>
-    <div class="twit-content">테스트 문서 </div>
-  </div>
-  <div class="twit">
-    <input type="hidden" value="작성자1" class="twit-user-id">
-    <input type="hidden" value="작성자아이디1" class="twit-id">
-    <div class="twit-author"><a href="post">test1</a></div>
-    <div class="twit-content">테스트1 문서</div>
-  </div>
-  <div class="twit">
-    <input type="hidden" value="작성자" class="twit-user-id">
-    <input type="hidden" value="작성자아이디" class="twit-id">
-    <div class="twit-author"><a href="post">test</a></div>
-    <div class="twit-content">테스트 문서 </div>
-  </div>
-  <div class="twit">
-    <input type="hidden" value="작성자" class="twit-user-id">
-    <input type="hidden" value="작성자아이디" class="twit-id">
-    <div class="twit-author"><a href="post">test1</a></div>
-    <div class="twit-content">테스트 문서 </div>
-  </div>
-  <div class="twit">
-    <input type="hidden" value="작성자" class="twit-user-id">
-    <input type="hidden" value="작성자아이디" class="twit-id">
-    <div class="twit-author"><a href="post">test1</a></div>
-    <div class="twit-content">테스트 문서 </div>
-  </div>
-  <div class="twit">
-    <input type="hidden" value="작성자" class="twit-user-id">
-    <input type="hidden" value="작성자아이디" class="twit-id">
-    <div class="twit-author"><a href="post">test1</a></div>
-    <div class="twit-content">테스트 문서 </div>
-  </div>
-  <div class="twit">
-    <input type="hidden" value="작성자" class="twit-user-id">
-    <input type="hidden" value="작성자아이디" class="twit-id">
-    <div class="twit-author"><a href="post">test1</a></div>
-    <div class="twit-content">테스트 문서 </div>
-  </div>
-  <div class="twit">
-    <input type="hidden" value="작성자" class="twit-user-id">
-    <input type="hidden" value="작성자아이디" class="twit-id">
-    <div class="twit-author"><a href="post">test1</a></div>
-    <div class="twit-content">테스트 문서 </div>
-  </div>
-  <div class="twit">
-    <input type="hidden" value="작성자" class="twit-user-id">
-    <input type="hidden" value="작성자아이디" class="twit-id">
-    <div class="twit-author"><a href="post">test1</a></div>
-    <div class="twit-content">테스트 문서 </div>
-  </div>
-  <div class="twit">
-    <input type="hidden" value="작성자" class="twit-user-id">
-    <input type="hidden" value="작성자아이디" class="twit-id">
-    <div class="twit-author"><a href="post">test1</a></div>
-    <div class="twit-content">테스트 문서 </div>
-  </div>
-  <div class="twit">
-    <input type="hidden" value="작성자" class="twit-user-id">
-    <input type="hidden" value="작성자아이디" class="twit-id">
-    <div class="twit-author"><a href="post">test1</a></div>
-    <div class="twit-content">테스트 문서 </div>
+  <div class="twits">
+    {% for post in posts %}
+    <div class="twit">
+      <input type="hidden" value="{{post.User.id}}" class="twit-user-id">
+      <input type="hidden" value="{{post.id}}" class="twit-id">
+      <div class="twit-author">{{post.User.nick}}</div>
+      {% if not followerIdList.includes(post.User.id) and post.User.id !== user.id %}
+        <button class="twit-follow">팔로우하기</button>
+      {% endif %}
+      <div class="twit-content">{{post.content}}</div>
+      {% if post.img %}
+        <div class="twit-img"><img src="{{post.img}}" alt="섬네일"></div>
+      {% endif %}
+    </div>
+    {% endfor %}
   </div>
 </div>
 {% endblock %}
