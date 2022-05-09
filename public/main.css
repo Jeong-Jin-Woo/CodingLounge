@@ -228,12 +228,10 @@ margin-left:20px;
 width:40px;
 /* background-color:red; */
 }
-.profileWholeContainer{
-  margin-top:80px;
-  
-}
+
 .profileInfo{
   border-radius:10px;
+  width:700px;
   border:1px solid black;
 }
 .profileMenubar{
