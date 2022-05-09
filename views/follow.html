@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="timeline">
+  <h1>Follow</h1>
+  <div class="twits">
+    <form id="hashtag-form" action="/hashtag">
+      <input type="text" name="hashtag" placeholder="게시물 검색">
+      <button class="btn">검색</button><br>
+      <a class="btn" href="insert">글쓰기</a>
+    </form>
+  </div>
+  <div class="twits">
+    {% for post in posts %}
+    <div class="twit">
+      <a href="post/{{post.id}}/detail">
+      <input type="hidden" value="{{post.User.id}}" class="twit-user-id">
+      <div class="post-profile">
+        <div class="profile-section">
+          <img class="pic" src="/static/profile.jpg">
+          <p>{{post.UserId}}</p>
+        </div>
+      </div>
+      <div class="twit-author">#{{post.id}}</div>
+      <div class="twit-content">{{post.post_title}}</div>
+      
+      
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+</script>
+{% endblock %}
