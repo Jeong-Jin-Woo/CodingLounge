@@ -4,63 +4,49 @@
   <div class="timeline">
     <h1>Q&A</h1>
     <div class="twit">
+      {% if post.id %}
       <div id="post-form">
-        <div class="box">
-          <div class="profile-img"><img src="static/profile.jpg">프로필</div>
-          <hr>
+        <div class="profile-section">
+          <img class="pic" src="/static/profile.jpg">
+          <p>{{post.UserId}}</p>
         </div>
+        <hr>
         <div>
-          <div class="post-hashtag">#Q&A</div><div class="post-hashtag">#HTML&CSS</div>
-        </div>
-        <br>
-        <div class="input-group">
-          <div>제목</div>
-          <div class="code-area">코드</div>
-          <div>설명</div>
-        </div>
-      </div>
-    </div>
-    <div class="twit">
-      <form id="comment-form" action="/commentInsert">
-        <div class="box">
-          <div class="profile-img"><img src="static/profile.jpg">프로필</div>
-          <hr>
+        {% set hashs = ['JAVA','C++', 'C','JavaScript'] %} <!-- 태그불러오기 추가할것-->
+        <div class="hashtag-title">Tags</div>
+        {% for h in hashs %}
+          <div class="hashtag-item">{{h}}</div>
+        {% endfor %}
         </div>
         <div class="input-group">
-          <input id="content" type="type" name="content" placeholder="설명 입력">
-          <button id="" class="">등록</button>
+          <div class="post-title">{{post.post_title}}</div>
+          <div class="post-code-area">
+            <div class="title">코드</div>
+            <pre>
+            <code>
+              {{post.code_content}}
+            </code>
+            </pre>
+          </div>
+          <!-- <div>코드
+            <pre class="prettyprint">
+              class A {
+                public void main(String[] args){
+                  print("html");
+                }
+              }
+            </pre></div> -->
+            {% if post.post_img %} <!-- 이미지는 있는경우만 보이게 셋팅-->
+              <div class="post-img"><img src="{{post.post_img}}" alt="섬네일"></div>
+            {% endif %}
+          <div class="post-content">{{post.question_content}}</div>
         </div>
-      </form>
-    </div>
-    <div class="twit">
-      <div class="input-group">
-        <div class="box">
-          <div class="profile-img"><img src="static/profile.jpg">프로필</div>
-          <hr>
-        </div>
-        <div>댓글내용</div>
       </div>
+      {% endif %}
     </div>
-    <div class="twit">
-      <div class="input-group">
-        <div class="box">
-          <div class="profile-img"><img src="static/profile.jpg">프로필</div>
-          <hr>
-        </div>
-        <div>댓글내용1</div>
-      </div>
-    </div>
-    <div class="twit">
-      <div class="input-group">
-        <div class="box">
-          <div class="profile-img"><img src="static/profile.jpg">프로필</div>
-          <hr>
-        </div>
-        <div>댓글내용2</div>
-      </div>
-    </div>
-  </div>
+{% include 'comment.html' %}
+
 {% endblock %}
 {% block script %}
-<!-- FIX 유효성검사기능추가 -->
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 {% endblock %}

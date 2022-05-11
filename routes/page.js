@@ -51,8 +51,8 @@ router.get('/profileupdate', (req, res) => {
   res.render('profileupdate', { title: '개인정보수정' });
 });
 
-router.get('/myPost', (req, res) => {
-  res.render('myPost',{ title: "작성 글" });
+router.get('/follow', (req, res) => {
+  res.render('follow', { title: '팔로우&팔로잉 한 유저 글 확인' });
 });
 
 router.get('/', async (req, res, next) => {

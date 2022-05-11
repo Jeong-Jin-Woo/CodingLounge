@@ -49,8 +49,11 @@ input[type='text'], input[type='email'], input[type='password'], textarea {
     border: 1px solid #333;
     width:450PX;
   }
+  .profileWholeContainer{
+    width:700px;
+  }
   .profileInfo{
-      width:600px;
+      width:700px;
       height:130px;
       display:flex;
       /* background-color: yellow; */
@@ -111,13 +114,16 @@ input[type='text'], input[type='email'], input[type='password'], textarea {
   display:flex;
 
 }
+.profileInfoContainer{
+  width:500px;
+}
 .profilePic{
     width:150px;
     height:100%;
     background-color:red;
 }
 .user-name-container{ 
-    width:250px;
+    width:500px;
     margin-left:15px;
     /* background-color: orange; */
     display:flex;
@@ -132,7 +138,7 @@ input[type='text'], input[type='email'], input[type='password'], textarea {
   border-radius: 4px;
   vertical-align: top;
 }
-@media screen and (min-width: 800px) { .timeline { width: 500px; } }
+@media screen and (min-width: 800px) { .timeline { width: 700px; } }
 #twit-form {
   border-bottom: 1px solid silver;
   padding: 10px;

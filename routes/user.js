@@ -21,21 +21,4 @@ router.post('/:id/follow', isLoggedIn, async (req, res, next) => {
   }
 });
 
-router.post('/:id/mypost', isLoggedIn, async (req, res, next) => {
-  try {
-    const post = await Post.findOne({
-      include:{
-        model: User,
-        where: { id: req.user.id } 
-      }
-    });
-    console("mypost"+post);
-    res.send('success');
-    res.json(post);
-  } catch (error) {
-    console.error(error);
-    next(error);
-  }
-});
-
 module.exports = router;
