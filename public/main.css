@@ -246,6 +246,18 @@ width:40px;
 font-size:20px;
 /* background-color:red; */
 }
+.followings {
+  margin-right:10px;
+}
+.followings ,.followers{
+  width:230px;
+  border:1px solid black;
+  border-radius: 10px;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  font-size:15px;
+}
 .profileWholeContainer{
   margin-top:80px;
   
@@ -281,8 +293,24 @@ font-size:20px;
   width:550px;
   height:auto;
   border-radius:10px;
-  border: 1px solid #2E75B6;
+  
 }
+.usersposts{
+  border: 1px solid #2E75B6;
+  width:550px;
+  height:auto;
+  border-radius:10px;
+}
+.userscomments{
+  border: 1px solid #2E75B6;
+  width:550px;
+  height:auto;
+  border-radius:10px;
+}
+.followingerList{
+  width:550px;
+}
+
 /*profile info 부분 끝*/
 
 /* hash-tag */

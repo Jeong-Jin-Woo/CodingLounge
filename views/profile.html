@@ -52,7 +52,7 @@
   <script>
     function showFollowFollowing(){
       document.getElementById('displayInfo').innerHTML=
-      `   <div class="followings half">    
+      `<div class="followingerList"> <div class="followings half">    
       <h2>팔로잉 목록</h2>
       {% if user.Followings %}
         {% for following in user.Followings %}
@@ -68,17 +68,17 @@
         {% endfor %}
       {% endif %}
     </div>
-      
+      </div>
       `;
     }
     function showPost(){
       document.getElementById('displayInfo').innerHTML=`
-        <div>작성글</div>
+        <div class="usersposts">작성글</div>
       `;
     }
     function showReview(){
       document.getElementById('displayInfo').innerHTML=`
-      <div>작성댓글</div>
+      <div class="userscomments">작성댓글</div>
 `;
     }
   </script>

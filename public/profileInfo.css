@@ -117,6 +117,10 @@ input[type='text'], input[type='email'], input[type='password'], textarea {
 .profileInfoContainer{
   width:500px;
 }
+.followings{
+  width:230px;
+  background-color:yellow;
+}
 .profilePic{
     width:150px;
     height:100%;

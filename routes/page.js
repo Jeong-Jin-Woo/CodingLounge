@@ -59,7 +59,7 @@ router.get('/', async (req, res, next) => {
     next(err);
   }
 });
-
+///:hash
 router.get('/hashtag/:hash', async (req, res, next) => {
   const query = req.params.hash;
   console.log("hashtag req:"+query);
@@ -67,7 +67,7 @@ router.get('/hashtag/:hash', async (req, res, next) => {
     return res.redirect('/');
   }
   try {
-    const hashtag = await Hashtag.findOne({ where: { title: query } });
+    const hashtag = await Hashtag.findOne({ where: { title: query} });
     let posts = [];
     if (hashtag) {
       posts = await hashtag.getPosts({ include: [{ model: User }] });
@@ -78,6 +78,7 @@ router.get('/hashtag/:hash', async (req, res, next) => {
       posts: posts,
     });
   } catch (error) {
+    
     console.error(error);
     return next(error);
   }
