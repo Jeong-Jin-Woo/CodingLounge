@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "root",
-    "password": "USERPASSWORD",
+    "username": "hansung",
+    "password": "hansung",
     "database": "codingloungedb",
     "host": "127.0.0.1",
     "dialect": "mysql"

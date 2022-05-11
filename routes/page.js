@@ -12,8 +12,22 @@ router.use((req, res, next) => {
   next();
 });
 
-router.get('/profile', isLoggedIn, (req, res) => {
-  res.render('profile', { title: '프로필' });
+router.get('/profile', isLoggedIn, async (req, res) => {
+    try {
+    const posts = await Post.findAll({
+      include: {
+        model: User,
+        attributes: ['id', 'nick'],
+      },
+      order: [['createdAt', 'DESC']],
+    });
+    res.render('profile', {
+      title: 'profile',
+      posts: posts,
+    });
+  } catch (err) {
+    console.error(err);
+  }
 });
 
 router.get('/join', isNotLoggedIn, (req, res) => {
@@ -35,6 +49,10 @@ router.get('/insert', isLoggedIn, (req, res) => {
 
 router.get('/profileupdate', (req, res) => {
   res.render('profileupdate', { title: '개인정보수정' });
+});
+
+router.get('/myPost', (req, res) => {
+  res.render('myPost',{ title: "작성 글" });
 });
 
 router.get('/', async (req, res, next) => {

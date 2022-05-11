@@ -19,6 +19,11 @@ module.exports = class Post extends Sequelize.Model {
         type: Sequelize.TEXT('medium'),
         allowNull: true,
       },
+      createdAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.NOW,
+      },
     }, {
       sequelize,
       timestamps: true,
@@ -32,7 +37,7 @@ module.exports = class Post extends Sequelize.Model {
   }
 
   static associate(db) {
-    db.Post.belongsTo(db.User);
+    db.Post.belongsTo(db.User, {foreignKey:'UserId', targetKey:'id'});
     db.Post.belongsToMany(db.Hashtag, { through: 'PostHashtag' });
   }
 };

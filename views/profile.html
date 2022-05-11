@@ -30,6 +30,7 @@
    </div>
   </div>
 </div>
+
   <div class="timeline profileMenubar">
     <div class="profileMenuOption">
       <div onClick="showPost()">
@@ -39,7 +40,7 @@
         작성 댓글
       </div>
       <div onClick="showFollowFollowing()">
-        팔로우/팔로잉
+        팔로워/팔로잉
       </div>
     </div>
     <div id="displayInfo"></div>
@@ -71,6 +72,13 @@
     function showPost(){
       document.getElementById('displayInfo').innerHTML=`
         <div>작성글</div>
+        {% for post in posts %}
+          {% if post.UserId == user.id %}
+            <div> #{{post.id}} 게시물을 작성하였습니다. </div>
+            <div> 작성글 제목 : {{post.post_title}}&nbsp;&nbsp;&nbsp; 작성자 : {{user.id}}</div>
+            <br>
+          {% endif %}
+        {% endfor %}
       `;
     }
     function showReview(){
