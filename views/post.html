@@ -6,10 +6,12 @@
     <div class="twit">
       {% if post.id %}
       <div id="post-form">
-        <div class="profile-section">
-          <img class="pic" src="/static/profile.jpg">
-          <p>{{post.UserId}}</p>
-        </div>
+        <a>
+          <div class="profile-section">
+            <img class="pic" src="/static/profile.jpg">
+            <p>{{post.UserId}}</p>
+          </div>
+        </a>
         <hr>
         <div>
         {% set hashs = ['JAVA','C++', 'C','JavaScript'] %} <!-- 태그불러오기 추가할것-->

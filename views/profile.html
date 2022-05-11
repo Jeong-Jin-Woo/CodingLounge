@@ -57,7 +57,11 @@
       <h2>팔로잉 목록</h2>
       {% if user.Followings %}
         {% for following in user.Followings %}
-          <div>{{following.nick}}</div>
+          <div class="comment-section">
+              <img class="pic" src="/static/profile.jpg">
+              <p>{{following.nick}}</p>
+              <button class="right btn">팔로잉</button> 
+          </div>
         {% endfor %}
       {% endif %}
     </div>
@@ -65,7 +69,11 @@
       <h2>팔로워 목록</h2>
       {% if user.Followers %}
         {% for follower in user.Followers %}
-          <div>{{follower.nick}}</div>
+          <div class="comment-section">
+              <img class="pic" src="/static/profile.jpg">
+              <p>{{follower.nick}}</p>
+              <button class="right btn">삭제</button> 
+          </div>
         {% endfor %}
       {% endif %}
     </div>

@@ -55,6 +55,16 @@ router.get('/follow', (req, res) => {
   res.render('follow', { title: '팔로우&팔로잉 한 유저 글 확인' });
 });
 
+router.get('/:id/followPost', async(req, res) => {
+  // select * from posts INNER JOIN follow on posts.UserId = follow.followingId 
+  // where follow.followingId in(select followingId from follow where followerId = 'test1');
+
+  res.render('main', {
+    title: 'prj-name',
+    posts: posts,
+  });
+});
+
 router.get('/', async (req, res, next) => {
   try {
     const posts = await Post.findAll({
