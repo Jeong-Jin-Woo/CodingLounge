@@ -31,6 +31,9 @@ module.exports = class User extends Sequelize.Model {
     db.User.hasMany(db.Post, {
       foreignKey : 'UserId', sourceKey: 'id'
     });
+    db.User.hasMany(db.Comment, { 
+      foreignKey: 'commenter', sourceKey: 'id' 
+    });
     db.User.belongsToMany(db.User, {
       foreignKey: 'followingId',
       as: 'Followers',
