@@ -30,14 +30,6 @@
             </code>
             </pre>
           </div>
-          <!-- <div>코드
-            <pre class="prettyprint">
-              class A {
-                public void main(String[] args){
-                  print("html");
-                }
-              }
-            </pre></div> -->
             {% if post.post_img %} <!-- 이미지는 있는경우만 보이게 셋팅-->
               <div class="post-img"><img src="{{post.post_img}}" alt="섬네일"></div>
             {% endif %}
@@ -46,7 +38,33 @@
       </div>
       {% endif %}
     </div>
-{% include 'comment.html' %}
+  {% if user and user.id %} <!-- 로그인 했을때만 댓글기능 활성화-->
+  <div class="twit">
+      <form id="comment-form" action="/commentInsert">
+        <input type="hidden" id="postId" value="{{post.id}}">
+        <div class="comment-section">
+            <img class="pic" src="/static/profile.jpg">
+            <p>{{user.id}}</p> 
+        </div>
+        <div class="input-group">
+            <input id="content" type="type" name="content" placeholder="설명 입력">
+            <button id="" class="">등록</button>
+        </div>
+      </form>
+  </div>
+  {% endif %}
+  <div>
+      <div class="twit">
+          <div class="input-group">
+          <div class="comment-section">
+              <img class="pic" src="/static/profile.jpg">
+              <p>test1</p> 
+          </div>
+          <hr>
+          <div>댓글내용</div>
+          </div>
+      </div>
+  </div>
 
 {% endblock %}
 {% block script %}
