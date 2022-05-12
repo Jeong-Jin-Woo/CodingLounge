@@ -3,6 +3,8 @@ const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const { Post, User, Hashtag } = require('../models');
 
 const router = express.Router();
+const sequelize = require("sequelize");
+const Op = sequelize.Op;
 
 router.use((req, res, next) => {
   res.locals.user = req.user;
@@ -55,25 +57,36 @@ router.get('/follow', (req, res) => {
   res.render('follow', { title: '팔로우&팔로잉 한 유저 글 확인' });
 });
 
-router.get('/:id/followPost', async(req, res) => {
-  // select * from posts INNER JOIN follow on posts.UserId = follow.followingId 
-  // where follow.followingId in(select followingId from follow where followerId = 'test1');
+// router.get('/:id/followPost', async(req, res) => {
+//   // select * from posts INNER JOIN follow on posts.UserId = follow.followingId 
+//   // where follow.followingId in(select followingId from follow where followerId = 'test1');
+//   console.log(db.sequelize.models.Follow);
+//   // console.log(followPosts);
 
-  res.render('main', {
-    title: 'prj-name',
-    posts: posts,
-  });
-});
+//   res.render('main', {
+//     title: 'prj-name',
+//   //  posts: followPosts,
+//   });
+// });
 
 router.get('/', async (req, res, next) => {
   try {
     const posts = await Post.findAll({
-      include: {
-        model: User,
-        attributes: ['id', 'nick'],
-      },
+      include:[
+        {
+          model: User,
+          attributes: ['id', 'nick'],
+        },
+    ],
       order: [['createdAt', 'DESC']],
     });
+    // posts = await posts.getHashtags();
+    // const hashtag = await Hashtag.findOne({ where: { title: query} });
+    // let posts = [];
+    // if (hashtag) {
+    //   posts = await hashtag.getPosts({ include: [{ model: User }] });
+    // }
+
     res.render('main', {
       title: 'prj-name',
       posts: posts,
@@ -96,6 +109,29 @@ router.get('/hashtag/:hash', async (req, res, next) => {
     if (hashtag) {
       posts = await hashtag.getPosts({ include: [{ model: User }] });
     }
+
+    return res.render('main', {
+      title: `Q&A`,
+      posts: posts,
+    });
+  } catch (error) {
+    
+    console.error(error);
+    return next(error);
+  }
+});
+
+router.get('/search', async (req, res, next) => {
+  const item = req.query.item;
+  try {
+    const posts = await Post.findAll({ 
+      where: {
+        post_title: {
+          [Op.like] :"%"+item+"%"
+        }
+      },
+      order: [['createdAt', 'DESC']],
+    });
 
     return res.render('main', {
       title: `Q&A`,

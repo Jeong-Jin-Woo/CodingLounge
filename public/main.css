@@ -123,6 +123,7 @@ input[type='text'], input[type='email'], input[type='password'], textarea {
   margin-bottom: 10px;
 }
 .twit-author { display: inline-block; font-weight: bold; margin-right: 10px; }
+.twit-tags { display: inline-block; font-weight: bold; margin-right: 10px; }
 .twit-follow {
   padding: 1px 5px;
   background: #fff;
@@ -137,7 +138,7 @@ input[type='text'], input[type='email'], input[type='password'], textarea {
 .error-message { color: red; font-weight: bold; }
 #search-form { text-align: right; }
 #join-form { padding: 10px; text-align: center; }
-#hashtag-form { text-align: right; }
+#search-form { text-align: right; }
 footer { text-align: center; }
 /* post-hashtag 추가 */
 .post-hashtag {
@@ -333,8 +334,8 @@ font-size:20px;
   background: #DEEBF7;
   border: 1px solid silver;
   color: #2E75B6;
-  height: 30px;
-  line-height: 30px;
+  height: 20px;
+  line-height: 20px;
   vertical-align: top;
   font-size: 12px;
 }
@@ -349,7 +350,7 @@ font-size:20px;
   color:#2E75B6;
 }
 
-/* post profile */
+/* common profile */
 .profile-section {
   display: flex;
   align-items: center;
@@ -357,16 +358,18 @@ font-size:20px;
   margin: 2px 0 8px 0;
 }
 .profile-section img {
-  display: inline-block;
   margin-right: 10px;
   width: 50px;
   height: 50px;
   border: 1px solid black;
 }
-.profile-section p {
+.profile-section div {
   display: inline-block;
+}
+.profile-section p {
+  display: block;
   color: #262626;
-  font-size: 16px;
+  font-size: 14px;
 }
 .pic{
   border-radius: 100%;
