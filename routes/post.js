@@ -3,7 +3,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-const { Post, Hashtag } = require('../models');
+const { Post, Hashtag, Comment } = require('../models');
 const { isLoggedIn } = require('./middlewares');
 
 const router = express.Router();
@@ -37,9 +37,11 @@ router.get('/:id/detail', async (req, res, next) => {
   const post_id = req.params.id;
   try{
     const post = await Post.findOne({ where : { id : post_id}});
+    //const comment = await Comment.findAll({ where : { id: post_id}});
     return res.render('post', {
       title: `detail`,
       post: post,
+      //comments: comment
     });
   }catch(error){
     console.error(error);
