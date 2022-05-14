@@ -37,11 +37,11 @@ router.get('/:id/detail', async (req, res, next) => {
   const post_id = req.params.id;
   try{
     const post = await Post.findOne({ where : { id : post_id}});
-    //const comment = await Comment.findAll({ where : { id: post_id}});
+    //const comment = await Comment.findAll({ where : { id: posts_id}});
     return res.render('post', {
       title: `detail`,
       post: post,
-      //comments: comment
+      //comment: comment,
     });
   }catch(error){
     console.error(error);
