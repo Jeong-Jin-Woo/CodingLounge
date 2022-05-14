@@ -54,16 +54,18 @@
   </div>
   {% endif %}
   <div>
+    {% for c in comment %}
       <div class="twit">
-          <div class="input-group">
-          <div class="comment-section">
-              <img class="pic" src="/static/profile.jpg">
-              <p>test1</p> 
-          </div>
-          <hr>
-          <div>댓글내용</div>
-          </div>
+        <div class="input-group">
+        <div class="comment-section">
+            <img class="pic" src="/static/profile.jpg">
+            <p>{{c.commenter}}</p>
+        </div>
+        <hr>
+        <div>{{c.comment}}</div>
+        </div>
       </div>
+    {% endfor %}
   </div>
 
 {% endblock %}
