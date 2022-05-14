@@ -14,14 +14,15 @@
     <div class="hashtag-list">
       <!-- SELECT 값 추가-->
       {% set hashs = ['JAVA','C++', 'C','JavaScript','Nodejs','Os','DB','보안','HTML/CSS','test2','test3','test4'] %}  
-      <form id="hashtag-form" action="/hashtag"></form>
-      {% for hash in hashs %}
-        <a class="hashtag-item" href="/hashtag/{{hash}}">#{{hash}}</a>
+    
+      {% for hash in hashs %}<!-- 버튼을 누르면  onclick이벤트로 axios-->
+        <button class="hashtag-item" onclick="filtering( `{{hash}}` )" >#{{hash}}</button>
       {% endfor %}
-    </form>
+      
+    <!-- </form> -->
     </div>
   </div>
-  <div class="twits">
+  <div class="twitlist">
     {% for post in posts %}
     <div class="twit">
       <a href="post/{{post.id}}/detail">
@@ -93,5 +94,52 @@
       }
     });
   });
+  const twitlist = document.querySelector(".twitlist");
+
+  function filtering(hash){
+      console.log("hash",hash)
+    axios.get(`/hashtag/${hash}`)
+    .then((res)=>{
+      console.log( res.data);
+      console.log("twitlist",twitlist);
+      let temp=``;
+      let twitsInfo = res.data;
+     twitsInfo.map((info,index)=>{
+      let date = info.createdAt.toLocaleString("ko");
+     
+      temp +=
+      ` <div class="twit">
+      <a href="post/${info.id}/detail">
+      <input type="hidden" value="${info.User.id}" class="twit-user-id">
+      <div class="post-profile">
+        <div class="profile-section">
+          <div>
+            <img class="pic" src="/static/profile.jpg">
+          </div>
+          <div>
+            <p>${info.UserId}</p>
+            <p>${date}</p>
+          </div>
+        </div>
+      </div>
+      <div class="post-info">
+        <div class="twit-author">#${info.id}</div>
+        <div class="twit-tags">
+          <div class="hashtag-item">test1</div>
+        </div>
+        <div class="twit-content">${info.post_title}</div>
+      </div>
+      </a>
+    </div>     
+       `;
+     
+     });
+     twitlist.innerHTML=temp;
+    
+    }).catch((error)=>{
+      console.log(error)
+    });
+  }
 </script>
 {% endblock %}
+

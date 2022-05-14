@@ -108,12 +108,14 @@ router.get('/hashtag/:hash', async (req, res, next) => {
     let posts = [];
     if (hashtag) {
       posts = await hashtag.getPosts({ include: [{ model: User }] });
+      console.log("postsposts",posts);
     }
 
-    return res.render('main', {
-      title: `Q&A`,
-      posts: posts,
-    });
+    // return res.render('main', {
+    //   title: `Q&A`,
+    //   posts: posts,
+    // });
+    return res.send(posts);
   } catch (error) {
     
     console.error(error);
