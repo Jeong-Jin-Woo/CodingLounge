@@ -65,18 +65,6 @@ router.get('/follow', (req, res) => {
   res.render('follow', { title: '팔로우&팔로잉 한 유저 글 확인' });
 });
 
-// router.get('/:id/followPost', async(req, res) => {
-//   // select * from posts INNER JOIN follow on posts.UserId = follow.followingId 
-//   // where follow.followingId in(select followingId from follow where followerId = 'test1');
-//   console.log(db.sequelize.models.Follow);
-//   // console.log(followPosts);
-
-//   res.render('main', {
-//     title: 'prj-name',
-//   //  posts: followPosts,
-//   });
-// });
-
 router.get('/', async (req, res, next) => {
   console.log("req.body",req.body);
   var queryData = url.parse(req.url,true).query;
@@ -97,12 +85,6 @@ router.get('/', async (req, res, next) => {
     ],
       order: [['createdAt', 'DESC']],
     });
-    // posts = await posts.getHashtags();
-    // const hashtag = await Hashtag.findOne({ where: { title: query} });
-    // let posts = [];
-    // if (hashtag) {
-    //   posts = await hashtag.getPosts({ include: [{ model: User }] });
-    // }
 
     res.render('main', {
       title: 'prj-name',
