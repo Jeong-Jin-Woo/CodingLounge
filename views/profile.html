@@ -6,7 +6,7 @@
   <div class="profileInfo">
     <div class="profileContainer">
     <div class="profilePic">
-      <img id="profile-img" src="static/profile.jpg" style="width:130px; height:130px;">
+      <img id="profile-img" src="static/profile.png" style="width:130px; height:130px;">
     </div></div>
     <div class="user-name-container">
       <div class="user-name">{{user.nick}}</div>
@@ -33,7 +33,7 @@
   <div class="timeline profileMenubar">
     <div class="profileMenuOption">
       <div class="option" style="cursor:pointer;" onClick="showPost()">
-        <p>작성글</p>
+        <p>작성 글</p>
       </div>
       <div class="option" style="cursor:pointer;" onClick="showReview()">
         <p>작성 댓글</p>
@@ -48,13 +48,17 @@
 </div>
   <script>
     function showFollowFollowing(){
-      document.getElementById('displayInfo').innerHTML=`<div class="followingerList"> <div class="followings half">    
+      document.getElementById('displayInfo').innerHTML=`
+      <br>
+      <div class="userscomments"style="position: relative;margin-top: 16px; text-align: center;">팔로워 / 팔로잉</div>
+      <br>
+      <div class="followingerList"> <div class="followings half">    
       <h2>팔로잉 목록</h2>
       {% if user.Followings %}
         {% for following in user.Followings %}
           <div class="comment-section">
               <input type="hidden" class="user-follower" value="{{following.id}}">
-              <img class="pic" src="/static/profile.jpg">
+              <img class="pic" src="/static/profile.png">
               <p>{{following.nick}}</p>
               <button class="right btn remove-following">취소</button> 
           </div>
@@ -67,7 +71,7 @@
         {% for follower in user.Followers %}
           <div class="comment-section">
               <input type="hidden" class="user-follower" value="{{follower.id}}">
-              <img class="pic" src="/static/profile.jpg">
+              <img class="pic" src="/static/profile.png">
               <p>{{follower.nick}}</p>
               <button class="right btn remove-follow">삭제</button> 
           </div>
@@ -119,28 +123,27 @@
 
     function showPost(){
       document.getElementById('displayInfo').innerHTML=`
-      <br><br>
+      <br>
+      <div class="userscomments"style="position: relative;margin-top: 16px; text-align: center;">작성 글</div>
+      <br>
       {% for post in posts %}
           {% if post.UserId == user.id %}
             <div class="twitlist">
               <div class="twit">
                 <a href="post/{{post.id}}/detail">
                   <input type="hidden" value="{{user.id}}" class="twit-user-id">    
-
-
-                
                 <div class="post-section">
                   <div>
-                    <img class="pic" width="50px" height="50px" src="/static/mypost_image.png">
+                    <img width="50px" height="50px" src="/static/mypost_image.png">
                   </div>    
                   <div class="twit-tags">
                     <div class="post-hashtag" style="position: relative; margin-top: -1px;">Q&A</div>
-                    <div class="twit-author">에 #{{post.id}} 게시물을 작성하였습니다.</div>
+                    <div class="post-align" style="color: #8b8e90;">에 #{{post.id}} 게시물을 작성하였습니다.</div>
                     <br>
-                    <div style="position: relative;margin-left: -45px; margin-top: 7px">{{post.post_title}}</div>
+                    <div style="color: #000000; position: relative;margin-left: -45px; margin-top: 7px">{{post.post_title}}</div>
                   </div>
                 </div>
-                <div class="post-profile"style="position: relative;margin-top: -43px;">
+                <div class="post-profile" style="position: relative;margin-top: -45px;">
                   <div class="profile-section" style="display:table-cell; vertical-align: bottom; text-align: right;">
                     <div>
                       <p>{{post.createdAt.toLocaleString('ko-KR')}}<br>{{user.id}}</p>
@@ -148,7 +151,6 @@
                   </div>
                 </div>
                 </a>
-                
             </div>
         {% endif %}
       {% endfor %}
@@ -157,7 +159,43 @@
     }
     function showReview(){
       document.getElementById('displayInfo').innerHTML=`
-      <div class="userscomments">작성댓글</div>
+      <br>
+      <div class="userscomments"style="position: relative;margin-top: 16px; text-align: center;">작성 댓글</div>
+      <br>
+      {% for comment in comments %}
+        {% for post in posts %}
+          {% if comment.posts_id == post.id %}
+            {% if comment.commenter == user.id %}
+              <div class="twitlist">
+                <div class="twit">
+                  <a href="post/{{comment.posts_id}}/detail">
+                    <input type="hidden" value="{{user.id}}" class="twit-user-id">    
+                  <div class="post-section">
+                    <div>
+                      <img width="35px" height="35px" src="/static/mycomment_image.png" style="position: relative; margin-left: 10px;"/>
+                    </div>    
+                    <div class="twit-tags">
+                      <div style="color: #8b8e90;">&nbsp;#{{post.id}} 게시물에 댓글을 남겼습니다.
+                        <div style="color:#262626;font-size:14px;font-weight: normal;">{{comment.created_at.toLocaleString('ko-KR')}}</div>
+                      </div>
+                      <br>
+                      <div style="color: #000000;">&nbsp;{{post.post_title}}</div>
+                    </div>
+                  </div>
+                  <div class="post-profile" style="position: relative;margin-top: -45px;">
+                    <div class="profile-section" style="display:table-cell; vertical-align: bottom; text-align: right;">
+                      <div>
+                        <p><br>{{post.UserId}}</p>
+                      </div>
+                    </div>
+                  </div>
+                  </a>
+              </div>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+
 `;
     }
 </script>
