@@ -5,7 +5,7 @@ const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const User = require('../models/user');
 
 const router = express.Router();
-
+const url = require('url');
 router.post('/join', isNotLoggedIn, async (req, res, next) => {
   const { id, nick, password } = req.body;
   try {
@@ -33,7 +33,8 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
       console.error(authError);
       return next(authError);
     }
-    console.log("useruseruser",user);
+    
+    console.log("useruseruser",user.dataValues.id);
     if (!user) {
       return res.redirect(`/?loginError=${info.message}`);
     }
@@ -42,7 +43,12 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
         console.error(loginError);
         return next(loginError);
       }
-      return res.redirect('/');
+      return res.redirect(url.format({
+        pathname:"/",
+        query:{
+          "id":user.dataValues.id,
+        },
+      }));
     });
   })(req, res, next); // 미들웨어 내의 미들웨어에는 (req, res, next)를 붙입니다.
 });

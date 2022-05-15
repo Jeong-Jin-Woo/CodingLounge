@@ -173,6 +173,17 @@ footer { text-align: center; }
   height: 50%; */
   object-fit: cover;
 }
+.hashtagClick{
+  display:flex;
+  list-style:none;
+}
+.hashtagClick div{
+  margin-right:10px;
+}
+.hashtagClick > div:active{
+  background-color:#2E75B6;
+  color:white;
+}
 .firstMenu{
   width:100%;
   height:40px;

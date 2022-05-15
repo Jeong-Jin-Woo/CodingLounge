@@ -4,17 +4,17 @@
     <div class="timeline">
       <h1>글쓰기</h1>
       <div class="twit">
-        <form id="post-form" action="/post/insert">
+        <form id="post-form" action="/post/insert" method="post">
           <div class="input-group">
-            <label for="title">제목</label><br>
+            <label for="post_title">제목</label><br>
             <input id="title" type="type" name="title" placeholder="제목 입력"><br>
           </div>
           <div class="input-group">
-            <label for="code">소스코드</label><br>
+            <label for="code_content">소스코드</label><br>
             <textarea id="story" name="story" rows="5" cols="33"></textarea><br>
           </div>
           <div class="input-group">
-            <label for="content">설명</label><br>
+            <label for="question_content">설명</label><br>
             <input id="content" type="type" name="content" placeholder="설명 입력"><br>
           </div>
           <div class="input-group">  
@@ -27,18 +27,23 @@
 
           <div class="input-group">
             <label>태그</label>
-            <ul>
-              <li>JAVA</li>
-              <li>C++</li>
-              <li>Nodejs</li>
-              <li>DB</li>
-              <li>보안</li>
-              <li>Javascript</li>
-              <li>OS</li>
-              <li>UI/UX</li>
-              <li>HTML/CSS</li>
-            </ul>
+            <div class="hashtagClick">
+              <div>#JAVA</div>
+              <div>#C++</div>
+              <div>#Nodejs</div>
+              <div>#DB</div>
+              <div>#보안</div>
+              <div>#Javascript</div>
+              <div>#OS</div>
+              <div>#UI/UX</div>
+              <div>#HTML/CSS</div>
             </div>
+            </div>
+            <div class="input-group">
+              <label>클릭한 태그</label>
+              <div class="showSelectedhash"></div>
+              </div>
+           
           <div class="input-group">
               <button id="twit-btn" type="submit" class="btn">등록하기</button>
           
@@ -50,6 +55,7 @@
 
 {% block script %}
   <script>
+    let selectedhash;
     if (document.getElementById('img')) {
       document.getElementById('img').addEventListener('change', function(e) {
         const formData = new FormData();
@@ -97,6 +103,25 @@
       reader.readAsDataURL(input.files[0]);
     }
   });
+  
+// * document.querySelector(".hashtagClick").addEventListener("click",e=>{    
+    //눌렀으면 배열에 추가 
+    //post할때 같이 보내기    
+   // * selectedhash=e.target.innerText;
+   // * console.log("selectedhash",selectedhash);
+  //  document.getElementsByClassName(selectedhash).style.backgroundColor="#2E75B6";
+    // e.target.style.backgroundColor="#2E75B6";
+    // e.target.style.color="white";
+    // *document.querySelector(".showSelectedhash").innerHTML=`${selectedhash}`;
+  // *});
+
+  // document.getElementById("twit-btn").addEventListener("click",e=>{
+  //   e.preventDefault();
+  //   if(selectedhash==null){
+  //     alert("해시태그를 선택하세요");     
+  //   }
+   
+  // })
 
   </script>
 {% endblock %}

@@ -3,7 +3,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-const { Post, Hashtag, Comment } = require('../models');
+const { Post, Hashtag, Comment,User } = require('../models');
 const { isLoggedIn } = require('./middlewares');
 
 const router = express.Router();
@@ -50,30 +50,43 @@ router.get('/:id/detail', async (req, res, next) => {
 
 
 const upload2 = multer();
-router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
-  try {
-    console.log(req.user);
-    const post = await Post.create({
-      content: req.body.content,
-      img: req.body.url,
-      UserId: req.user.id,
-    });
-    const hashtags = req.body.content.match(/#[^\s#]*/g);
-    if (hashtags) {
-      const result = await Promise.all(
-        hashtags.map(tag => {
-          return Hashtag.findOrCreate({
-            where: { title: tag.slice(1).toLowerCase() },
-          })
-        }),
-      );
-      await post.addHashtags(result.map(r => r[0]));
+router.post('/insert', isLoggedIn, upload2.none(), async (req, res, next) => {
+  
+  const { title,
+    story, content } = req.body;
+    const postNum = await Post.count();
+   
+    const user = await User.findOne({ where : { id : req.user.id}});
+  
+    
+    try {
+      console.log(req.user);
+
+      const post = await Post.create({
+        question_content: req.body.story,
+        code_content: req.body.content,
+        post_title:req.body.title,
+        img: req.body.postImg,
+        UserId: req.user.id,
+        id:postNum+1,
+      });
+      const hashtags = req.body.content.match(/#[^\s#]*/g);
+      if (hashtags) {
+        const result = await Promise.all(
+          hashtags.map(tag => {
+            return Hashtag.findOrCreate({
+              where: { title: tag.slice(1).toLowerCase() },
+            })
+          }),
+        );
+        await post.addHashtags(result.map(r => r[0]));
+      }
+      res.redirect('/');
+    } catch (error) {
+      console.error(error);
+      next(error);
     }
-    res.redirect('/');
-  } catch (error) {
-    console.error(error);
-    next(error);
-  }
+   
 });
 
 module.exports = router;

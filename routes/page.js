@@ -2,10 +2,12 @@ const express = require('express');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const { Post, User, Hashtag } = require('../models');
 
+const url = require('url');
 const router = express.Router();
 const sequelize = require("sequelize");
+const passport = require('passport');
 const Op = sequelize.Op;
-
+var userRealId;
 router.use((req, res, next) => {
   res.locals.user = req.user;
   res.locals.followerCount = req.user ? req.user.Followers.length : 0;
@@ -45,8 +47,14 @@ router.get('/post', (req, res) => {
 });
 
 router.get('/insert', isLoggedIn, (req, res) => {
+  try {
   console.log("insert 호출");
-  res.render('insert', { title: '글 작성' });
+  res.render('insert', { title: '글 작성',
+    UserId:req.user,
+});
+  }catch(err){
+    console.error(err);
+  }
 });
 
 router.get('/profileupdate', (req, res) => {
@@ -70,6 +78,15 @@ router.get('/follow', (req, res) => {
 // });
 
 router.get('/', async (req, res, next) => {
+  console.log("req.body",req.body);
+  var queryData = url.parse(req.url,true).query;
+  console.log("queryData",queryData.id);
+  userRealId=queryData.id;
+  passport.serializeUser(function(id,done){
+    User.findById(id,function(err,user){
+      done(err,user);
+    })
+  })
   try {
     const posts = await Post.findAll({
       include:[
