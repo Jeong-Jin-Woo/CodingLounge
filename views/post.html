@@ -40,8 +40,9 @@
     </div>
   {% if user and user.id %} <!-- 로그인 했을때만 댓글기능 활성화-->
   <div class="twit">
-      <form id="comment-form" action="/commentInsert">
-        <input type="hidden" id="postId" value="{{post.id}}">
+      <form id="comment-form" action="/commentInsert" method="post">
+        <input type="hidden" name="postId" value="{{post.id}}">
+        <!-- <div>{{post.id}}</div> -->
         <div class="comment-section">
             <img class="pic" src="/static/profile.jpg">
             <p>{{user.id}}</p> 
