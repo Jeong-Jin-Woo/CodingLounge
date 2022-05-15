@@ -71,7 +71,7 @@ router.get('/follow/:id', isLoggedIn, async(req, res, next) => {
       order: [['createdAt', 'DESC']],
     });
 
-    res.render('main', {
+    res.render('follow', {
       title: 'prj-name',
       posts: followPosts,
     });

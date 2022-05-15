@@ -25,15 +25,19 @@
   <div class="twitlist">
     {% for post in posts %}
     <div class="twit">
-      <a href="post/{{post.id}}/detail">
-      <input type="hidden" value="{{post.User.id}}" class="twit-user-id">
       <div class="post-profile">
         <div class="profile-section">
           <div>
             <img class="pic" src="/static/profile.jpg">
           </div>
           <div>
-            <p>{{post.UserId}}</p>
+            <input type="hidden" value="{{post.User.id}}" class="twit-user-id">
+            <p class="inline">{{post.UserId}}</p>
+            {% if user.id %}
+              {% if not followerIdList.includes(post.User.id) and post.User.id !== user.id %}
+                <button class="twit-follow inline">팔로우</button>
+              {% endif %}
+            {% endif %}
             <p>{{post.createdAt.toLocaleString('ko-KR')}}</p>
           </div>
         </div>
@@ -41,11 +45,12 @@
       <div class="post-info">
         <div class="twit-author">#{{post.id}}</div>
         <div class="twit-tags">
-          <div class="hashtag-item">test1</div>
+        <div class="hashtag-item">test1</div>
         </div>
-        <div class="twit-content">{{post.post_title}}</div>
+        <a href="post/{{post.id}}/detail">
+          <div class="twit-content">{{post.post_title}}</div>
+        </a>
       </div>
-      </a>
     </div>
     {% endfor %}
   </div>
@@ -54,11 +59,6 @@
 
 {% block script %}
 <script>
-  //페이지 로드 될때 date 형식 바꿔주기
-  window.onload = () => {
-    
-  };
-
   if (document.getElementById('img')) {
     document.getElementById('img').addEventListener('change', function(e) {
       const formData = new FormData();
@@ -77,10 +77,12 @@
   }
   document.querySelectorAll('.twit-follow').forEach(function(tag) {
     tag.addEventListener('click', function() {
-      const myId = document.querySelector('#my-id');
+      const myId = document.querySelector('#my-id').value;
+      console.log("myId :"+myId);
       if (myId) {
         const userId = tag.parentNode.querySelector('.twit-user-id').value;
-        if (userId !== myId.value) {
+        console.log("userId :"+userId);
+        if (userId !== myId) {
           if (confirm('팔로잉하시겠습니까?')) {
             axios.post(`/user/${userId}/follow`)
               .then(() => {

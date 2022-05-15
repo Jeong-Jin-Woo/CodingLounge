@@ -4,28 +4,31 @@
 <div class="timeline">
   <h1>Follow</h1>
   <div class="twits">
-    <form id="hashtag-form" action="/hashtag">
-      <input type="text" name="hashtag" placeholder="게시물 검색">
-      <button class="btn">검색</button><br>
-      <a class="btn" href="insert">글쓰기</a>
-    </form>
   </div>
   <div class="twits">
     {% for post in posts %}
     <div class="twit">
-      <a href="post/{{post.id}}/detail">
       <input type="hidden" value="{{post.User.id}}" class="twit-user-id">
       <div class="post-profile">
         <div class="profile-section">
-          <img class="pic" src="/static/profile.jpg">
-          <p>{{post.UserId}}</p>
+          <div class="">
+            <img class="pic" src="/static/profile.jpg">
+          </div>
+          <div>
+            <p>{{post.UserId}}</p>
+            <p>{{post.createdAt.toLocaleString('ko-KR')}}</p>
+          </div>
         </div>
       </div>
-      <div class="twit-author">#{{post.id}}</div>
-      <div class="twit-content">{{post.post_title}}</div>
-      
-      
-      </a>
+      <div class="post-info">
+        <div class="twit-author">#{{post.id}}</div>
+        <div class="twit-tags">
+          <div class="hashtag-item">test1</div>
+        </div>
+        <a href="/post/{{post.id}}/detail">
+          <div class="twit-content">{{post.post_title}}</div>
+        </a>
+      </div>
     </div>
     {% endfor %}
   </div>
