@@ -99,14 +99,40 @@
 
     function showPost(){
       document.getElementById('displayInfo').innerHTML=`
-        <div>작성글</div>
-        {% for post in posts %}
+      <br><br>
+      {% for post in posts %}
           {% if post.UserId == user.id %}
-            <div> #{{post.id}} 게시물을 작성하였습니다. </div>
-            <div> 작성글 제목 : {{post.post_title}}&nbsp;&nbsp;&nbsp; 작성자 : {{user.id}}</div>
-            <br>
-          {% endif %}
-        {% endfor %}
+            <div class="twitlist">
+              <div class="twit">
+                <a href="post/{{post.id}}/detail">
+                  <input type="hidden" value="{{user.id}}" class="twit-user-id">    
+
+
+                
+                <div class="post-section">
+                  <div>
+                    <img class="pic" width="50px" height="50px" src="/static/mypost_image.png">
+                  </div>    
+                  <div class="twit-tags">
+                    <div class="post-hashtag" style="position: relative; margin-top: -1px;">Q&A</div>
+                    <div class="twit-author">에 #{{post.id}} 게시물을 작성하였습니다.</div>
+                    <br>
+                    <div style="position: relative;margin-left: -45px; margin-top: 7px">{{post.post_title}}</div>
+                  </div>
+                </div>
+                <div class="post-profile"style="position: relative;margin-top: -43px;">
+                  <div class="profile-section" style="display:table-cell; vertical-align: bottom; text-align: right;">
+                    <div>
+                      <p>{{post.createdAt.toLocaleString('ko-KR')}}<br>{{user.id}}</p>
+                    </div>
+                  </div>
+                </div>
+                </a>
+                
+            </div>
+        {% endif %}
+      {% endfor %}
+    </div>
       `;
     }
     function showReview(){
