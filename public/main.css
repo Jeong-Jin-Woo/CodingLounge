@@ -299,7 +299,7 @@ font-size:20px;
   border-radius:100px;
   margin:15px;
   margin-left:20px;
- background-color:red;
+ background-color:black;
 }
 #displayInfo{
   width:550px;
@@ -465,4 +465,31 @@ pre code {
 
 .post-content{
   font-size: 14px;
+}
+
+.post-section {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  margin: 5px 0 5px 0;
+}
+.post-section div{
+    display: inline-block;
+    font-weight: bold; 
+    margin-right: 10px;
+}
+.post-hashtag {
+  display: inline-block;
+  padding: 0 5px;
+  margin : 5px;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 4px;
+  background: #DEEBF7;
+  border: 1px solid silver;
+  color: #2E75B6;
+  height: 20px;
+  line-height: 20px;
+  vertical-align: top;
+  font-size: 12px;
 }

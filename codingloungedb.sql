@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `codingloungedb`.`comment` (
     FOREIGN KEY (`commenter`)
     REFERENCES `codingloungedb`.`users` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 1
+AUTO_INCREMENT = 23
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 

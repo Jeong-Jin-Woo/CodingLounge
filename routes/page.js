@@ -1,6 +1,6 @@
 const express = require('express');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
-const { Post, User, Hashtag } = require('../models');
+const { Post, User, Hashtag, Comment } = require('../models');
 
 const url = require('url');
 const router = express.Router();
@@ -25,9 +25,17 @@ router.get('/profile', isLoggedIn, async (req, res) => {
       },
       order: [['createdAt', 'DESC']],
     });
+    const comments = await Comment.findAll({
+      include:{
+        model: Post,
+        attributes: ['id','post_title'],
+      },
+      order: [['created_at', 'DESC']],
+    });
     res.render('profile', {
       title: 'profile',
       posts: posts,
+      comments: comments,
     });
   } catch (err) {
     console.error(err);
