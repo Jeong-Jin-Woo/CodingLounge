@@ -10,7 +10,7 @@ router.post('/', async (req, res, next) => {
         commenter: req.user.id,
         posts_id: req.body.postId
       });
-      res.redirect(`/post/${req.body.postId}/detail`); // 여기 처리
+      res.redirect(`/post/${req.body.postId}/detail`);
     } catch (error) {
       console.error(error);
     }

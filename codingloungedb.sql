@@ -36,6 +36,52 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
+-- Table `codingloungedb`.`posts`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `codingloungedb`.`posts` (
+  `id` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL,
+  `post_title` VARCHAR(255) CHARACTER SET 'utf8' NOT NULL,
+  `code_content` LONGTEXT CHARACTER SET 'utf8' NOT NULL,
+  `question_content` LONGTEXT CHARACTER SET 'utf8' NOT NULL,
+  `post_img` MEDIUMTEXT CHARACTER SET 'utf8' NULL DEFAULT NULL,
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NOT NULL,
+  `UserId` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_posts_users1_idx` (`UserId` ASC) VISIBLE,
+  CONSTRAINT `fk_posts_users1`
+    FOREIGN KEY (`UserId`)
+    REFERENCES `codingloungedb`.`users` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `codingloungedb`.`comment`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `codingloungedb`.`comment` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `comment` LONGTEXT NULL DEFAULT NULL,
+  `created_at` DATETIME NULL DEFAULT NULL,
+  `commenter` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL,
+  `posts_id` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_comment_users1_idx` (`commenter` ASC) VISIBLE,
+  INDEX `fk_comment_posts1_idx` (`posts_id` ASC) VISIBLE,
+  CONSTRAINT `fk_comment_posts1`
+    FOREIGN KEY (`posts_id`)
+    REFERENCES `codingloungedb`.`posts` (`id`),
+  CONSTRAINT `fk_comment_users1`
+    FOREIGN KEY (`commenter`)
+    REFERENCES `codingloungedb`.`users` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 1
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
 -- Table `codingloungedb`.`follow`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `codingloungedb`.`follow` (
@@ -73,43 +119,21 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `codingloungedb`.`posts`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `codingloungedb`.`posts` (
-  `id` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL,
-  `post_title` VARCHAR(255) CHARACTER SET 'utf8' NOT NULL,
-  `code_content` LONGTEXT CHARACTER SET 'utf8' NOT NULL,
-  `question_content` LONGTEXT CHARACTER SET 'utf8' NOT NULL,
-  `post_img` MEDIUMTEXT CHARACTER SET 'utf8' NULL DEFAULT NULL,
-  `createdAt` DATETIME NOT NULL,
-  `updatedAt` DATETIME NOT NULL,
-  `UserId` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_posts_users1_idx` (`UserId` ASC) VISIBLE,
-  CONSTRAINT `fk_posts_users1`
-    FOREIGN KEY (`UserId`)
-    REFERENCES `codingloungedb`.`users` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
 -- Table `codingloungedb`.`posthashtag`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `codingloungedb`.`posthashtag` (
   `createAt` DATETIME NOT NULL,
   `updatedAt` DATETIME NULL DEFAULT NULL,
-  `tag_id` VARCHAR(45) NOT NULL,
-  `post_id` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL,
-  PRIMARY KEY (`tag_id`, `post_id`),
-  INDEX `fk_posthashtag_hashtags1_idx` (`tag_id` ASC) VISIBLE,
-  INDEX `fk_posthashtag_posts1_idx` (`post_id` ASC) VISIBLE,
+  `HashtagId` VARCHAR(45) NOT NULL,
+  `postId` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL,
+  PRIMARY KEY (`HashtagId`, `postId`),
+  INDEX `fk_posthashtag_hashtags1_idx` (`HashtagId` ASC) VISIBLE,
+  INDEX `fk_posthashtag_posts1_idx` (`postId` ASC) VISIBLE,
   CONSTRAINT `fk_posthashtag_hashtags1`
-    FOREIGN KEY (`tag_id`)
+    FOREIGN KEY (`HashtagId`)
     REFERENCES `codingloungedb`.`hashtags` (`id`),
   CONSTRAINT `fk_posthashtag_posts1`
-    FOREIGN KEY (`post_id`)
+    FOREIGN KEY (`postId`)
     REFERENCES `codingloungedb`.`posts` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4

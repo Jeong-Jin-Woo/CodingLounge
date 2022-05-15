@@ -382,6 +382,9 @@ font-size:20px;
   color: #262626;
   font-size: 14px;
 }
+.profile-section .inline {
+  display: inline;
+}
 .pic{
   border-radius: 100%;
 }
