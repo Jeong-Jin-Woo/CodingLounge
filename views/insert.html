@@ -19,30 +19,28 @@
           </div>
           <div class="input-group">  
             <div class="box">
-              <div class="profile-img"><img id="post-img" src="static/profile.jpg" style="width:200%; height:auto;"></div>
-            </div>
-            <label id="postImg-label" for="postImg">사진 업로드</label>
-            <input id="postImg" type="file" accept="image/*">
+              <div class="profile-img">
+                <img id="post-img" src="static/profile.jpg" style="width:200%; height:auto;"></div>
+                <input id="img-url" type="hidden" name="url">
+              </div>
+            <label id="postImg-label" for="img">사진 업로드</label>
+            <input id="img" type="file" accept="image/*">
         </div>
-
           <div class="input-group">
             <label>태그</label>
-            <div class="hashtagClick">
-              <div>#JAVA</div>
-              <div>#C++</div>
-              <div>#Nodejs</div>
-              <div>#DB</div>
-              <div>#보안</div>
-              <div>#Javascript</div>
-              <div>#OS</div>
-              <div>#UI/UX</div>
-              <div>#HTML/CSS</div>
-            </div>
-            </div>
-            <div class="input-group">
-              <label>클릭한 태그</label>
-              <div class="showSelectedhash"></div>
+           
+        <div class="showSelectedhash">              
+                  <input type="radio" name="hashtagss" value="JAVA">#JAVA<br>
+                  <input type="radio" name="hashtagss" value="C++">#C++<br>
+                  <input type="radio" name="hashtagss" value="Nodejs">#Nodejs<br>
+                  <input type="radio" name="hashtagss" value="DB">#DB<br>
+                  <input type="radio" name="hashtagss" value="보안">#보안<br>
+                  <input type="radio" name="hashtagss" value="Javascript">#Javascript<br>
+                  <input type="radio" name="hashtagss" value="OS">#OS<br>
+                  <input type="radio" name="hashtagss" value="UI/UX">#UI/UX<br>
+                  <input type="radio" name="hashtagss" value="HTML/CSS">#HTML/CSS<br>               
               </div>
+           </div>
            
           <div class="input-group">
               <button id="twit-btn" type="submit" class="btn">등록하기</button>
@@ -64,8 +62,8 @@
         axios.post('/post/img', formData)
           .then((res) => {
             document.getElementById('img-url').value = res.data.url;
-            document.getElementById('img-preview').src = res.data.url;
-            document.getElementById('img-preview').style.display = 'inline';
+            document.getElementById('post-img').src = res.data.url;
+            document.getElementById('post-img').style.display = 'inline';
           })
           .catch((err) => {
             console.error(err);
@@ -91,29 +89,19 @@
         }
       });
     });
-    document.getElementById("postImg").addEventListener("change", e => {
-    const input = e.target;
-    if(input.files && input.files[0]) {
-      const reader = new FileReader();
-      reader.onload = e => {
-          const previewImage = document.getElementById("post-img")
-          previewImage.src = e.target.result
-      }
-      // reader가 이미지 읽도록 하기
-      reader.readAsDataURL(input.files[0]);
-    }
-  });
   
-// * document.querySelector(".hashtagClick").addEventListener("click",e=>{    
-    //눌렀으면 배열에 추가 
-    //post할때 같이 보내기    
-   // * selectedhash=e.target.innerText;
-   // * console.log("selectedhash",selectedhash);
-  //  document.getElementsByClassName(selectedhash).style.backgroundColor="#2E75B6";
-    // e.target.style.backgroundColor="#2E75B6";
-    // e.target.style.color="white";
-    // *document.querySelector(".showSelectedhash").innerHTML=`${selectedhash}`;
-  // *});
+  function selectHash(e){
+    selectedhash=e.target.value;
+    document.querySelector(".showSelectedhash").innerHTML=`${selectedhash}`;
+    
+  }
+//  document.querySelector(".hashtagClick").addEventListener("click",e=>{    
+//     selectedhash=e.target.innerText;
+//     console.log("selectedhash",selectedhash);
+//     e.target.style.backgroundColor="#2E75B6";
+//     e.target.style.color="white";
+//     document.querySelector(".showSelectedhash").innerHTML=`${selectedhash}`;
+//   });
 
   // document.getElementById("twit-btn").addEventListener("click",e=>{
   //   e.preventDefault();

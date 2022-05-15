@@ -4,21 +4,22 @@ module.exports = class PostHahsTag extends Sequelize.Model {
   static init(sequelize) {
     return super.init({
   
-      hashtagid: {
-        type: Sequelize.TEXT('long'),
+      HashtagId: {
+        type: Sequelize.CHAR(100),
         allowNull: false,
       },
-      postid: {
-        type: Sequelize.TEXT('long'),
-        allowNull: false,
-      },
+      // postId: {
+      //   type: Sequelize.CHAR(100),
+      //   allowNull: false,
+       
+      // },
      
     }, {
       sequelize,
       timestamps: true,
       underscored: false,
-      modelName: 'Post',
-      tableName: 'posts',
+      modelName: 'PostHashtag',
+      tableName: 'posthashtag',
       paranoid: false,
       charset: 'utf8mb4',
       collate: 'utf8mb4_0900_ai_ci',
@@ -26,8 +27,16 @@ module.exports = class PostHahsTag extends Sequelize.Model {
   }
 
   static associate(db) {    
-    db.PostHahsTag.belongsToMany(db.Post, { 
-      through: 'postid' 
+    db.PostHashtag.belongsTo(db.Post, { 
+      foreignKey:'PostId',targetKey:'id' 
     });
+  
   }
+  static associate(db) {    
+    db.PostHashtag.belongsTo(db.Hashtag, { 
+      foreignKey:'HashtagId',targetKey:'id'
+    });
+  
+  }
+  
 };

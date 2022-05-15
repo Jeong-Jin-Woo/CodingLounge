@@ -66,10 +66,7 @@ router.get('/follow', (req, res) => {
 });
 
 router.get('/', async (req, res, next) => {
-  console.log("req.body",req.body);
-  var queryData = url.parse(req.url,true).query;
-  console.log("queryData",queryData.id);
-  userRealId=queryData.id;
+  
   passport.serializeUser(function(id,done){
     User.findById(id,function(err,user){
       done(err,user);

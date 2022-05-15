@@ -3,7 +3,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-const { User, Post, Hashtag, Comment } = require('../models');
+const { User, Post, Hashtag, Comment,PostHashtag } = require('../models');
 const { isLoggedIn } = require('./middlewares');
 
 const sequelize = require("sequelize");
@@ -32,7 +32,7 @@ const upload = multer({
 });
 
 router.post('/img', isLoggedIn, upload.single('img'), (req, res) => {
-  console.log(req.file);
+  console.log("파일 이름",req.file);
   res.json({ url: `/img/${req.file.filename}` });
 });
 
@@ -82,37 +82,32 @@ router.get('/follow/:id', isLoggedIn, async(req, res, next) => {
 });
 
 const upload2 = multer();
-router.post('/insert', isLoggedIn, upload2.none(), async (req, res, next) => {
-  
+router.post('/insert', isLoggedIn, upload2.none(), async (req, res, next) => { 
   const { title,
     story, content } = req.body;
-    const postNum = await Post.count();
-   
+    const postNum = await Post.count(); 
     const user = await User.findOne({ where : { id : req.user.id}});
-  
     
     try {
-      console.log(req.user);
-
+    
       const post = await Post.create({
         question_content: req.body.story,
         code_content: req.body.content,
         post_title:req.body.title,
-        img: req.body.postImg,
+        post_img: req.body.url,
         UserId: req.user.id,
         id:postNum+1,
       });
-      const hashtags = req.body.content.match(/#[^\s#]*/g);
-      if (hashtags) {
-        const result = await Promise.all(
-          hashtags.map(tag => {
-            return Hashtag.findOrCreate({
-              where: { title: tag.slice(1).toLowerCase() },
+  
+      if (req.body.hashtagss) {
+             const [hashtagresult,created] =await Hashtag.findOrCreate({           
+              where: { title: req.body.hashtagss },
+            })       
+            PostHashtag.create({
+              HashtagId:hashtagresult.id,
+              PostId:postNum+1,
             })
-          }),
-        );
-        await post.addHashtags(result.map(r => r[0]));
-      }
+    }
       res.redirect('/');
     } catch (error) {
       console.error(error);
