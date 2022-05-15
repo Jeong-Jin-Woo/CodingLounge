@@ -48,8 +48,7 @@
 </div>
   <script>
     function showFollowFollowing(){
-      document.getElementById('displayInfo').innerHTML=
-      `<div class="followingerList"> <div class="followings half">    
+      document.getElementById('displayInfo').innerHTML=`<div class="followingerList"> <div class="followings half">    
       <h2>팔로잉 목록</h2>
       {% if user.Followings %}
         {% for following in user.Followings %}
@@ -66,16 +65,38 @@
       {% if user.Followers %}
         {% for follower in user.Followers %}
           <div class="comment-section">
+              <input type="hidden" class="user-follower" value="{{follower.id}}">
               <img class="pic" src="/static/profile.jpg">
               <p>{{follower.nick}}</p>
-              <button class="right btn">삭제</button> 
+              <button class="right btn remove-follow">삭제</button> 
           </div>
         {% endfor %}
       {% endif %}
     </div>
       </div>
       `;
+      //이벤트 추가
+      document.querySelectorAll('.remove-follow').forEach(function(tag) {
+        tag.addEventListener('click', function() {
+          const myId = document.querySelector('#my-id');
+          if (myId) {
+            const userId = tag.parentNode.querySelector('.user-follower').value;
+            if (userId !== myId.value) {
+              if (confirm('팔로우를 취소하시겠습니까?')) {
+                axios.delete(`/user/${userId}/removeFollow`)
+                  .then(() => {
+                    location.reload();
+                  })
+                  .catch((err) => {
+                    console.error(err);
+                  });
+              }
+            }
+          }
+        });
+      });
     }
+
     function showPost(){
       document.getElementById('displayInfo').innerHTML=`
         <div>작성글</div>
@@ -93,6 +114,6 @@
       <div class="userscomments">작성댓글</div>
 `;
     }
-  </script>
+</script>
   {% endblock %}
  

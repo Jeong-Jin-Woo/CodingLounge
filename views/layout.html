@@ -14,7 +14,6 @@
        
         <div class="profile">
           <div class="profileTitle"><a href="/"><h2>codingLounge</h2></a></div>
-         
           <div class="firstMenu">
             {% if user and user.id %}
             <div class="loginoutjoin-css"><a href="/auth/logout">sign out</a></div>
@@ -26,7 +25,7 @@
           <br>
           <div class="menuContainer"><a href="/">Q&A</a></div><br>
           {% if user and user.id %}
-          <div class="menuContainer"><a href="" class="">follow</a></div><br>
+          <div class="menuContainer"><a href="/post/follow/{{user.id}}" class="">follow</a></div><br>
           <div class="menuContainer"><a href="/profile">Profile</a></div>
           {% endif %}
         </div>

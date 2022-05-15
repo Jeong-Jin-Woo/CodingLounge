@@ -3,8 +3,11 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-const { Post, Hashtag, Comment } = require('../models');
+const { User, Post, Hashtag, Comment } = require('../models');
 const { isLoggedIn } = require('./middlewares');
+
+const sequelize = require("sequelize");
+const Op = sequelize.Op;
 
 const router = express.Router();
 
@@ -48,6 +51,35 @@ router.get('/:id/detail', async (req, res, next) => {
   }
 });
 
+router.get('/follow/:id', isLoggedIn, async(req, res, next) => {
+  try{
+    const user = await User.findOne({ where: { id : req.params.id } });
+    const follow = await user.getFollowings({attributes: ['id']});
+    const followedIdList = [];
+    follow.forEach(user => {
+      followedIdList.push(user.id);
+    });
+
+    const followPosts = await Post.findAll({
+      include: {
+        model: User,
+        attributes: ['id', 'nick'],
+      },
+      where : {
+        userId : {[Op.in]:followedIdList}
+      },
+      order: [['createdAt', 'DESC']],
+    });
+
+    res.render('main', {
+      title: 'prj-name',
+      posts: followPosts,
+    });
+  }catch(err){
+    console.error(error);
+    next(error);
+  }
+});
 
 const upload2 = multer();
 router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
