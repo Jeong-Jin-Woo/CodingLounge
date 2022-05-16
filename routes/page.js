@@ -90,11 +90,13 @@ router.get('/', async (req, res, next) => {
     ],
       order: [['createdAt', 'DESC']],
     });
-   
+    const hashtag = await Hashtag.findAll({});
+    const postHashtag = await PostHashtag.findAll({});
     res.render('main', {
       title: 'prj-name',
       posts: posts,
-     
+      hashtag:hashtag,
+      postHashtag:postHashtag,
 
     });
   } catch (err) {
