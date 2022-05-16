@@ -80,7 +80,7 @@ router.get('/follow/:id', isLoggedIn, async(req, res, next) => {
     const followPosts = await Post.findAll({
       include: {
         model: User,
-        attributes: ['id', 'nick'],
+        attributes: ['id', 'nick', 'user_image'],
       },
       where : {
         userId : {[Op.in]:followedIdList}

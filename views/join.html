@@ -12,12 +12,10 @@
         <form id="join-form" action="/auth/join" method="post" enctype="multipart/form-data">
           <div class="input-group">  
               <div class="profile-img">
-                <!-- <img id="main-img" src="static/profile.png" style="width:200%; height:auto;" alt="미리보기">
-                <input id="img-url" type="hidden" name="url"> -->
-                <input type="file" name="img" placeholder="이미지를 입력하세요.">
+                <img id="main-img" src="static/profile.png" style="width:150px; height:150px;" alt="미리보기">
               </div>
-              <!-- <label id="img-label" for="img">사진 업로드</label>
-              <input id="img" type="file" accept="image/*"> -->
+              <label id="img-label" for="img">사진 업로드</label>
+              <input id="img" name="img" type="file" accept="image/*">
           </div>
           <div class="input-group">     
             <input id="join-id" class="join-input" type="text" placeholder="아이디" name="id">
@@ -46,6 +44,7 @@
   //이미지 업로드
   document.getElementById("img").addEventListener("change", e => {
     const input = e.target;
+
     if(input.files && input.files[0]) {
       const reader = new FileReader()
       reader.onload = e => {

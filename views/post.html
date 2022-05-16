@@ -8,8 +8,18 @@
       <div id="post-form">
         <a>
           <div class="profile-section">
-            <img class="pic" src="/static/profile.png">
-            <p>{{post.UserId}}</p>
+            <div>
+              {% if post.User.user_image %}
+                <img class="pic" src="{{post.User.user_image}}">  
+              {% else %}
+                <img class="pic" src="/static/profile.png">
+              {% endif %}
+            </div>
+            <div>
+              <p>{{post.UserId}}</p>
+              <p>{{post.createdAt.toLocaleString('ko-KR')}}</p>
+            </div>
+            
           </div>
         </a>
         <hr>
@@ -47,7 +57,7 @@
         </div>
         <div class="input-group">
             <input id="content" type="type" name="content" placeholder="설명 입력">
-            <button id="" class="">등록</button>
+            <button id="" class="btn">등록</button>
         </div>
       </form>
   </div>
@@ -56,14 +66,19 @@
     {% for c in comment %}
       <div class="twit">
         <div class="input-group">
-        <div class="comment-section">
+        <div class="profile-section">
+          <div>
             <img class="pic" src="/static/profile.png">
+          </div>
+          <div>
             <p>{{c.commenter}}</p>
+            <p>{{c.created_at.toLocaleString('ko-KR')}}</p>
+          </div>
         </div>
         <hr>
         <div>{{c.comment}}</div>
-        <button id="" class="">수정</button>
-        <button id="" class="" onclick="delfunc()">삭제</button>
+        <button id="" class="btn">수정</button>
+        <button id="" class="btn" onclick="delfunc()">삭제</button>
 
         <script>
           function delfunc()

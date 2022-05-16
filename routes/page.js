@@ -21,7 +21,7 @@ router.get('/profile', isLoggedIn, async (req, res) => {
     const posts = await Post.findAll({
       include: {
         model: User,
-        attributes: ['id', 'nick'],
+        attributes: ['id', 'nick','user_image'],
       },
       order: [['createdAt', 'DESC']],
     });
@@ -85,7 +85,7 @@ router.get('/', async (req, res, next) => {
       include:[
         {
           model: User,
-          attributes: ['id', 'nick'],
+          attributes: ['id', 'nick', 'user_image'],
         },
     ],
       order: [['createdAt', 'DESC']],
@@ -119,11 +119,7 @@ router.get('/hashtag/:hash', async (req, res, next) => {
       posts = await hashtag.getPosts({ include: [{ model: User }] });
       console.log("postsposts",posts);
     }
-   
-    // return res.render('main', {
-    //   title: `Q&A`,
-    //   posts: posts,
-    // });
+
     return res.send(posts);
     
   } catch (error) {
@@ -142,6 +138,12 @@ router.get('/search', async (req, res, next) => {
           [Op.like] :"%"+item+"%"
         }
       },
+      include:[
+        {
+          model: User,
+          attributes: ['id', 'nick','user_image'],
+        },
+      ],
       order: [['createdAt', 'DESC']],
     });
 

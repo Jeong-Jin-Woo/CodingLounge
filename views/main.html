@@ -31,7 +31,11 @@
       <div class="post-profile">
         <div class="profile-section">
           <div>
-            <img class="pic" src="/static/profile.png">
+            {% if post.User.user_image %}
+              <img class="pic" src="{{post.User.user_image}}">  
+            {% else %}
+              <img class="pic" src="/static/profile.png">
+            {% endif %}
           </div>
           <div>
             <input type="hidden" value="{{post.User.id}}" class="twit-user-id">
