@@ -41,10 +41,14 @@ router.get('/:id/detail', async (req, res, next) => {
   try{
     const post = await Post.findOne({ where : { id : post_id}});
     const comment = await Comment.findAll({ where : { posts_id: post_id}});
+    const posthashtag = await PostHashtag.findOne({where: {PostId:post_id}})
+    const posthashtagId = posthashtag.HashtagId;
+    const hashtag = await Hashtag.findOne({where:{id:posthashtagId}})
     return res.render('post', {
       title: `detail`,
       post: post,
       comment: comment,
+      hashtag:hashtag,
     });
   }catch(error){
     console.error(error);

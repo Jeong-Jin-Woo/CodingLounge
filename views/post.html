@@ -14,11 +14,8 @@
         </a>
         <hr>
         <div>
-        {% set hashs = ['JAVA','C++', 'C','JavaScript'] %} <!-- 태그불러오기 추가할것-->
         <div class="hashtag-title">Tags</div>
-        {% for h in hashs %}
-          <div class="hashtag-item">{{h}}</div>
-        {% endfor %}
+          <div class="hashtag-item">{{hashtag.title}}</div>
         </div>
         <div class="input-group">
           <div class="post-title">{{post.post_title}}</div>

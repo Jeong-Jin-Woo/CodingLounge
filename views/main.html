@@ -18,7 +18,10 @@
       {% for hash in hashs %}<!-- 버튼을 누르면  onclick이벤트로 axios-->
         <button class="hashtag-item" onclick="filtering( `{{hash}}` )" >#{{hash}}</button>
       {% endfor %}
-      
+
+      {% for c in comment %}                        
+        <button>{{c.comment}}</button>
+      {% endfor %}  
     <!-- </form> -->
     </div>
   </div>
@@ -45,14 +48,21 @@
       <div class="post-info">
         <div class="twit-author">#{{post.id}}</div>
         <div class="twit-tags">
-        <div class="hashtag-item">test1</div>
-        </div>
+          {% for oneposthashtag in posthashtag %} 
+          {% for onehashtag in hashtags %}
+            {% if post.id==oneposthashtag.PostId and oneposthashtag.HashtagId==onehashtag.id %}              
+                <div class="hashtag-item">{{onehashtag.title}}</div> 
+            {% endif %}
+          {% endfor %}
+         {% endfor %}  
+      </div>
         <a href="post/{{post.id}}/detail">
           <div class="twit-content">{{post.post_title}}</div>
         </a>
       </div>
     </div>
     {% endfor %}
+    
   </div>
 </div>
 {% endblock %}
@@ -106,8 +116,9 @@
       console.log("twitlist",twitlist);
       let temp=``;
       let twitsInfo = res.data;
+     
      twitsInfo.map((info,index)=>{
-      let date = info.createdAt.toLocaleString("ko");
+      let date = info.createdAt.toLocaleString("ko-KR");
      
       temp +=
       ` <div class="twit">
