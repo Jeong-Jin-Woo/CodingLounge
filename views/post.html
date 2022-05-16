@@ -41,7 +41,6 @@
   <div class="twit">
       <form id="comment-form" action="/commentInsert" method="post">
         <input type="hidden" name="postId" value="{{post.id}}">
-        <!-- <div>{{post.id}}</div> -->
         <div class="comment-section">
             <img class="pic" src="/static/profile.png">
             <p>{{user.id}}</p> 
@@ -63,6 +62,19 @@
         </div>
         <hr>
         <div>{{c.comment}}</div>
+        <button id="" class="">수정</button>
+        <button id="" class="" onclick="delfunc()">삭제</button>
+
+        <script>
+          function delfunc()
+          {
+            if(confirm('삭제 하시겠습니까?')) {
+              // axios로 삭제 기능 추가
+            }
+          }
+
+        </script>
+
         </div>
       </div>
     {% endfor %}

@@ -1,4 +1,6 @@
 const express = require('express');
+const multer = require('multer');
+const fs = require('fs');
 const passport = require('passport');
 const bcrypt = require('bcrypt');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
@@ -6,8 +8,30 @@ const User = require('../models/user');
 
 const router = express.Router();
 const url = require('url');
-router.post('/join', isNotLoggedIn, async (req, res, next) => {
+
+try {
+  fs.readdirSync('profileimg');
+} catch (error) {
+  console.error('profileimg 폴더가 없어 profileimg 폴더를 생성합니다.');
+  fs.mkdirSync('profileimg');
+}
+
+const upload = multer({
+  storage: multer.diskStorage({
+    destination(req, file, cb) {
+      cb(null, 'profileimg/');
+    },
+    filename(req, file, cb) {
+      cb(null, file.originalname);
+    },
+  }),
+  limits: { fileSize: 5 * 1024 * 1024 },
+});
+
+
+router.post('/join', isNotLoggedIn, upload.single('img'), async (req, res, next) => {
   const { id, nick, password } = req.body;
+  console.log(req.file);
   try {
     const exUser = await User.findOne({ where: { id } });
     if (exUser) {
@@ -18,6 +42,7 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
       id,
       nick,
       password: hash,
+      user_image: req.file.path,
     });
     res.send("<script>alert('정상적으로 회원가입 되었습니다.');location.href='/';</script>");
     //return res.redirect('/');
