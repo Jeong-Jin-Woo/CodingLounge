@@ -42,10 +42,9 @@ router.post('/join', isNotLoggedIn, upload.single('img'), async (req, res, next)
       id,
       nick,
       password: hash,
-      user_image: req.file.path,
+      user_image: `/${req.file.path.replace(/\\/gi,"/")}`,
     });
-    res.send("<script>alert('정상적으로 회원가입 되었습니다.');location.href='/';</script>");
-    //return res.redirect('/');
+    res.send("<script>alert('정상적으로 회원가입 되었습니다.');location.href='/login';</script>");
   } catch (error) {
     console.error(error);
     return next(error);
@@ -58,8 +57,6 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
       console.error(authError);
       return next(authError);
     }
-    
-    console.log("useruseruser",user.dataValues.id);
     if (!user) {
       return res.redirect(`/?loginError=${info.message}`);
     }
