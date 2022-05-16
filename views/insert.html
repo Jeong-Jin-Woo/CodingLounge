@@ -11,34 +11,34 @@
           </div>
           <div class="input-group">
             <label for="code_content">소스코드</label><br>
-            <textarea id="story" name="story" rows="5" cols="33"></textarea><br>
+            <textarea id="content" class="sourcecode" name="content" rows="35" cols="64"></textarea><br>
           </div>
           <div class="input-group">
             <label for="question_content">설명</label><br>
-            <input id="content" type="type" name="content" placeholder="설명 입력"><br>
+            <textarea id="story" name="story" class="description" placeholder="설명 입력"></textarea><br>
           </div>
-          <div class="input-group">  
-            <div class="box">
+          <div class="input-group" style="height:230px;">
+            <label id="postImg-label" for="img">사진 업로드</label>
+            <input id="img" type="file" accept="image/*">
+            <div class="postImage" >
               <div class="profile-img">
                 <img id="post-img" src="static/profile.jpg" style="width:200%; height:auto;"></div>
                 <input id="img-url" type="hidden" name="url">
-              </div>
-            <label id="postImg-label" for="img">사진 업로드</label>
-            <input id="img" type="file" accept="image/*">
+              </div>        
         </div>
           <div class="input-group">
             <label>태그</label>
            
-        <div class="showSelectedhash">              
-                  <input type="radio" name="hashtagss" value="JAVA">#JAVA<br>
-                  <input type="radio" name="hashtagss" value="C++">#C++<br>
-                  <input type="radio" name="hashtagss" value="Nodejs">#Nodejs<br>
-                  <input type="radio" name="hashtagss" value="DB">#DB<br>
-                  <input type="radio" name="hashtagss" value="보안">#보안<br>
-                  <input type="radio" name="hashtagss" value="Javascript">#Javascript<br>
-                  <input type="radio" name="hashtagss" value="OS">#OS<br>
-                  <input type="radio" name="hashtagss" value="UI/UX">#UI/UX<br>
-                  <input type="radio" name="hashtagss" value="HTML/CSS">#HTML/CSS<br>               
+              <div class="showSelectedhash">              
+                  <input type="radio" name="hashtagss" value="JAVA">#JAVA
+                  <input type="radio" name="hashtagss" value="C++">#C++
+                  <input type="radio" name="hashtagss" value="Nodejs">#Nodejs
+                  <input type="radio" name="hashtagss" value="DB">#DB
+                  <input type="radio" name="hashtagss" value="보안">#보안
+                  <input type="radio" name="hashtagss" value="Javascript">#Javascript
+                  <input type="radio" name="hashtagss" value="OS">#OS
+                  <input type="radio" name="hashtagss" value="UI/UX">#UI/UX
+                  <input type="radio" name="hashtagss" value="HTML/CSS">#HTML/CSS               
               </div>
            </div>
            
@@ -112,4 +112,6 @@
   // })
 
   </script>
+
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 {% endblock %}

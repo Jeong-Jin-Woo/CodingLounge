@@ -114,16 +114,18 @@ router.get('/hashtag/:hash', async (req, res, next) => {
   try {
     const hashtag = await Hashtag.findOne({ where: { title: query} });
     let posts = [];
+    let hashtagTitle;
     if (hashtag) {
       posts = await hashtag.getPosts({ include: [{ model: User }] });
       console.log("postsposts",posts);
     }
-
+   
     // return res.render('main', {
     //   title: `Q&A`,
     //   posts: posts,
     // });
     return res.send(posts);
+    
   } catch (error) {
     
     console.error(error);

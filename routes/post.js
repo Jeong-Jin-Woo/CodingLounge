@@ -42,14 +42,27 @@ router.get('/:id/detail', async (req, res, next) => {
     const post = await Post.findOne({ where : { id : post_id}});
     const comment = await Comment.findAll({ where : { posts_id: post_id}});
     const posthashtag = await PostHashtag.findOne({where: {PostId:post_id}})
-    const posthashtagId = posthashtag.HashtagId;
-    const hashtag = await Hashtag.findOne({where:{id:posthashtagId}})
-    return res.render('post', {
+    let posthashtagId;
+    let hashtag;
+    if(posthashtag){
+      posthashtagId = posthashtag.HashtagId;
+      hashtag = await Hashtag.findOne({where:{id:posthashtagId}})
+    }
+    if(hashtag){
+     return res.render('post', {
       title: `detail`,
       post: post,
       comment: comment,
       hashtag:hashtag,
     });
+  }else{
+    return res.render('post', {
+      title: `detail`,
+      post: post,
+      comment: comment,
+     
+    });
+  }
   }catch(error){
     console.error(error);
   }

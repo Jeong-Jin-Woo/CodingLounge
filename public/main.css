@@ -112,8 +112,21 @@ input[type='text'], input[type='email'], input[type='password'], textarea {
 #twit-btn {
   float: right;
   color: white;
-  background: crimson;
+  background: #2E75B6;
   border: none;
+}
+#title{
+  width:100%;
+  height:30px;
+}
+.sourcecode, .description{
+  height:200px;
+  width:100%;
+  resize:none;
+}
+.sourcecode{
+  background-color: black;
+  color:white;
 }
 .twit {
   border: 1px solid silver;
@@ -145,7 +158,17 @@ footer { text-align: center; }
   float: left;
   margin-right: 10px;
 }
-
+.postImage{
+  width:100px;height:100px;
+}
+.sourcecode{
+  color:green;
+}
+.showSelectedhash{
+  display:flex;
+  width:100%;
+  height:250px;
+}
 /* code-area 추가 */
 .code-area {
   margin: 10px;

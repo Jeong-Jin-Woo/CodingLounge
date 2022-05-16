@@ -15,7 +15,9 @@
         <hr>
         <div>
         <div class="hashtag-title">Tags</div>
+        {% if hashtag.title%}
           <div class="hashtag-item">{{hashtag.title}}</div>
+        {% endif %}
         </div>
         <div class="input-group">
           <div class="post-title">{{post.post_title}}</div>
