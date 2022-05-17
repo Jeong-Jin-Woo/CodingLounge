@@ -87,10 +87,14 @@ router.get('/follow/:id', isLoggedIn, async(req, res, next) => {
       },
       order: [['createdAt', 'DESC']],
     });
-
+    const hashtag = await Hashtag.findAll({});
+    const postHashtag = await PostHashtag.findAll({});
+   
     res.render('follow', {
       title: 'prj-name',
       posts: followPosts,
+      hashtag:hashtag,
+      postHashtag:postHashtag,
     });
   }catch(err){
     console.error(error);
