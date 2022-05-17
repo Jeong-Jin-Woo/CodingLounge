@@ -84,6 +84,7 @@ input[type='text'], input[type='email'], input[type='password'], textarea {
 .timeline {
   margin-top: 10px;
   width: 700px;
+
   display: inline-block;
   border-radius: 4px;
   vertical-align: top;
@@ -134,6 +135,12 @@ input[type='text'], input[type='email'], input[type='password'], textarea {
   padding: 10px;
   position: relative;
   margin-bottom: 10px;
+  
+}
+.postDetailhastagContainer{
+  display:flex;
+  align-items: center;
+  
 }
 .twit-authorTags{display:flex;width:70px;height:30px;align-items: center;}
 .twit-author {  width:40px;font-weight: bold; margin-right: 10px; }
@@ -169,7 +176,18 @@ footer { text-align: center; }
 .showSelectedhash{
   display:flex;
   width:100%;
-  height:250px;
+  height:35px;
+  font-size:15px;
+}
+.showSelectedhash input[type='radio']{
+  width:10px;
+  font-size:10px;
+}
+.eachHash{
+  display:flex;
+  align-items: center;
+  height:30px;
+  margin-right: 10px;
 }
 /* code-area 추가 */
 .code-area {
@@ -287,7 +305,7 @@ font-size:20px;
   margin-right:10px;
 }
 .followings ,.followers{
-  width:230px;
+  width:270px;
   border:1px solid black;
   border-radius: 10px;
   display:flex;

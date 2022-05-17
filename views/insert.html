@@ -3,7 +3,7 @@
 {% block content %}
     <div class="timeline">
       <h1>글쓰기</h1>
-      <div class="twit">
+      <div class="twit" style="height:920px">
         <form id="post-form" action="/post/insert" method="post">
           <div class="input-group">
             <label for="post_title">제목</label><br>
@@ -27,18 +27,18 @@
               </div>        
         </div>
           <div class="input-group">
-            <label>태그</label>
-           
+            <label>태그</label>           
               <div class="showSelectedhash">              
-                  <input type="radio" name="hashtagss" value="JAVA">#JAVA
-                  <input type="radio" name="hashtagss" value="C++">#C++
-                  <input type="radio" name="hashtagss" value="Nodejs">#Nodejs
-                  <input type="radio" name="hashtagss" value="DB">#DB
-                  <input type="radio" name="hashtagss" value="보안">#보안
-                  <input type="radio" name="hashtagss" value="Javascript">#Javascript
-                  <input type="radio" name="hashtagss" value="OS">#OS
-                  <input type="radio" name="hashtagss" value="UI/UX">#UI/UX
-                  <input type="radio" name="hashtagss" value="HTML/CSS">#HTML/CSS               
+                  <div class="eachHash"><input type="radio" name="hashtagss" value="JAVA">JAVA</div>
+                  <div class="eachHash"><input type="radio" name="hashtagss" value="C++">C++</div>
+                  <div class="eachHash"><input type="radio" name="hashtagss" value="C">C</div>
+                  <div class="eachHash"><input type="radio" name="hashtagss" value="Javascript">Javascript</div>                 
+                  <div class="eachHash"><input type="radio" name="hashtagss" value="Nodejs">Nodejs</div>
+                  <div class="eachHash"><input type="radio" name="hashtagss" value="OS">OS</div>
+                  <div class="eachHash"><input type="radio" name="hashtagss" value="DB">DB</div>
+                  <div class="eachHash"><input type="radio" name="hashtagss" value="보안">보안</div>
+                  <div class="eachHash"><input type="radio" name="hashtagss" value="HTML/CSS">HTML/CSS</div>                                 
+                  <div class="eachHash"><input type="radio" name="hashtagss" value="UI/UX">UI/UX</div>
               </div>
            </div>
            

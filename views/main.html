@@ -13,7 +13,7 @@
   <div class="twits">
     <div class="hashtag-list">
       <!-- SELECT 값 추가-->
-      {% set hashs = ['JAVA','C++', 'C','JavaScript','Nodejs','Os','DB','보안','HTML/CSS','test2','test3','test4'] %}  
+      {% set hashs = ['JAVA','C++', 'C','JavaScript','Nodejs','Os','DB','보안','HTML/CSS','UI/UX'] %}  
     
       {% for hash in hashs %}<!-- 버튼을 누르면  onclick이벤트로 axios-->
         <button class="hashtag-item" onclick="filtering( `{{hash}}` )" >#{{hash}}</button>
@@ -125,7 +125,7 @@
      
      twitsInfo.map((info,index)=>{
       let date = info.createdAt.toLocaleString("ko-KR");
-     
+      console.log("날짜 date to",date,info.createdAt);
       temp +=
       ` <div class="twit">
       <a href="post/${info.id}/detail">
