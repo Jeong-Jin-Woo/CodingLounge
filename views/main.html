@@ -50,6 +50,7 @@
         </div>
       </div>
       <div class="post-info">
+        <div class="twit-authorTags">
         <div class="twit-author">#{{post.id}}</div>
         <div class="twit-tags">
           {% for oneposthashtag in postHashtag %} 
@@ -60,6 +61,7 @@
           {% endfor %}
          {% endfor %}  
       </div>
+    </div>
         <a href="post/{{post.id}}/detail">
           <div class="twit-content">{{post.post_title}}</div>
         </a>
@@ -140,9 +142,11 @@
         </div>
       </div>
       <div class="post-info">
+        <div class="twit-authorTags">
         <div class="twit-author">#${info.id}</div>
         <div class="twit-tags">
           <div class="hashtag-item">${hash}</div>
+        </div>
         </div>
         <div class="twit-content">${info.post_title}</div>
       </div>

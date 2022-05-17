@@ -135,8 +135,9 @@ input[type='text'], input[type='email'], input[type='password'], textarea {
   position: relative;
   margin-bottom: 10px;
 }
-.twit-author { display: inline-block; font-weight: bold; margin-right: 10px; }
-.twit-tags { display: inline-block; font-weight: bold; margin-right: 10px; }
+.twit-authorTags{display:flex;width:70px;height:30px;align-items: center;}
+.twit-author {  width:40px;font-weight: bold; margin-right: 10px; }
+.twit-tags {height:25px;width:30px; font-weight: bold; margin-right: 10px;margin-bottom:5px; }
 .twit-follow {
   padding: 1px 5px;
   background: #fff;
@@ -159,7 +160,8 @@ footer { text-align: center; }
   margin-right: 10px;
 }
 .postImage{
-  width:100px;height:100px;
+  width:100px;
+  height:100px;
 }
 .sourcecode{
   color:green;
@@ -285,7 +287,7 @@ font-size:20px;
   margin-right:10px;
 }
 .followings ,.followers{
-  width:270px;
+  width:230px;
   border:1px solid black;
   border-radius: 10px;
   display:flex;
