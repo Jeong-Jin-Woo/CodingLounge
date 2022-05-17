@@ -124,8 +124,11 @@
       let twitsInfo = res.data;
      
      twitsInfo.map((info,index)=>{
-      let date = info.createdAt.toLocaleString("ko-KR");
-      console.log("날짜 date to",date,info.createdAt);
+      let date = new Date(info.createdAt);
+     
+      let datedays = date.toLocaleDateString('ko-KR'); 
+      let datetime = date.toLocaleTimeString('ko-KR');
+     
       temp +=
       ` <div class="twit">
       <a href="post/${info.id}/detail">
@@ -137,7 +140,7 @@
           </div>
           <div>
             <p>${info.UserId}</p>
-            <p>${date}</p>
+            <p>${datedays}&nbsp;${datetime}</p>
           </div>
         </div>
       </div>
