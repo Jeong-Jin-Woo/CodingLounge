@@ -63,7 +63,11 @@
         {% for following in user.Followings %}
           <div class="comment-section">
               <input type="hidden" class="user-follower" value="{{following.id}}">
-              <img class="pic" src="/static/profile.png">
+              {% if following.user_image %}
+                <img class="pic" src="{{following.user_image}}">
+              {% else %}
+                <img class="pic" src="/static/profile.png">
+              {% endif %}
               <p>{{following.nick}}</p>
               <button class="right btn remove-following">취소</button> 
           </div>
@@ -76,7 +80,11 @@
         {% for follower in user.Followers %}
           <div class="comment-section">
               <input type="hidden" class="user-follower" value="{{follower.id}}">
-              <img class="pic" src="/static/profile.png">
+              {% if follower.user_image %}
+                <img class="pic" src="{{follower.user_image}}">
+              {% else %}
+                <img class="pic" src="/static/profile.png">
+              {% endif %}
               <p>{{follower.nick}}</p>
               <button class="right btn remove-follow">삭제</button> 
           </div>
@@ -141,7 +149,7 @@
                   <div>
                     <img width="50px" height="50px" src="/static/mypost_image.png">
                   </div>    
-                  <div class="twit-tags">
+                  <div>
                     <div class="post-hashtag" style="position: relative; margin-top: -1px;">Q&A</div>
                     <div class="post-align" style="color: #8b8e90;">에 #{{post.id}} 게시물을 작성하였습니다.</div>
                     <br>
@@ -179,7 +187,7 @@
                     <div>
                       <img width="35px" height="35px" src="/static/mycomment_image.png" style="position: relative; margin-left: 10px;"/>
                     </div>    
-                    <div class="twit-tags">
+                    <div>
                       <div style="color: #8b8e90;">&nbsp;#{{post.id}} 게시물에 댓글을 남겼습니다.
                         <div style="color:#262626;font-size:14px;font-weight: normal;">{{comment.created_at.toLocaleString('ko-KR')}}</div>
                       </div>

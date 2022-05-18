@@ -1,6 +1,13 @@
 {% extends 'layout.html' %}
 
 {% block content %}
+<head>
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.css">
+</link>
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/monokai.min.css">
+</head>
   <div class="timeline">
     <h1>Q&A</h1>
     <div class="twit">
@@ -31,14 +38,15 @@
         </div>
         <div class="input-group">
           <div class="post-title">{{post.post_title}}</div>
-          <div class="post-code-area">
+          <!-- <div class="post-code-area"> -->
             <div class="title">코드</div>
-            <pre>
+            <!-- <pre>
             <code>
               {{post.code_content}}
             </code>
-            </pre>
-          </div>
+            </pre> -->
+            <textarea id="codemirror-textarea" name="content"></textarea>
+          <!-- </div> -->
             {% if post.post_img %} <!-- 이미지는 있는경우만 보이게 셋팅-->
               <div class="post-img"><img src="{{post.post_img}}" alt="섬네일"></div>
             {% endif %}
@@ -97,5 +105,15 @@
 
 {% endblock %}
 {% block script %}
-<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function(){
+      var editor = CodeMirror.fromTextArea(document.getElementById("codemirror-textarea"), {
+        lineNumbers : true,
+        theme: 'monokai',
+        readOnly: true
+      });
+      editor.setValue(`{{post.code_content}}`);
+    });
+  </script>
 {% endblock %}
