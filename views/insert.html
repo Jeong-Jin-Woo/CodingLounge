@@ -18,7 +18,6 @@
           </div>
           <div class="input-group">
             <label for="code_content">소스코드</label><br>
-            <!-- <textarea id="content" class="sourcecode" name="content" rows="35" cols="64"></textarea><br> -->
             <textarea id="codemirror-textarea" name="content"></textarea>
           </div>
           <div class="input-group">
@@ -66,10 +65,10 @@
     document.addEventListener("DOMContentLoaded", function(){
       var editor = CodeMirror.fromTextArea(document.getElementById("codemirror-textarea"), {
         lineNumbers : true,
-        theme: 'monokai'
+        theme: 'monokai',
+        mode : 'test/x-javascript',
+        value : "console.log('hello');"
       });
-      editor.setValue("console.log('hello');");
-      editor.setMode("javascript");
     });
   </script>
   <script>
