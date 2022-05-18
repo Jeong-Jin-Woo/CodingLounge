@@ -40,7 +40,13 @@ router.get('/:id/detail', async (req, res, next) => {
   const post_id = req.params.id;
   try{
     const post = await Post.findOne({ where : { id : post_id}});
-    const comment = await Comment.findAll({ where : { posts_id: post_id}});
+    const comment = await Comment.findAll({ 
+      include: {
+      model: User,
+      attributes: ['id', 'nick', 'user_image'],
+    },
+    where : { posts_id: post_id}
+    });
     const posthashtag = await PostHashtag.findOne({where: {PostId:post_id}})
     let posthashtagId;
     let hashtag;

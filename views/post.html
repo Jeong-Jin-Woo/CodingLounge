@@ -57,10 +57,14 @@
     </div>
   {% if user and user.id %} <!-- 로그인 했을때만 댓글기능 활성화-->
   <div class="twit">
-      <form id="comment-form" action="/commentInsert" method="post">
+      <form id="comment-form" action="/comment/insert" method="post">
         <input type="hidden" name="postId" value="{{post.id}}">
         <div class="comment-section">
-            <img class="pic" src="/static/profile.png">
+            {% if user.user_image %}
+              <img class="pic" src="{{user.user_image}}">  
+            {% else %}
+              <img class="pic" src="/static/profile.png">
+            {% endif %}
             <p>{{user.id}}</p> 
         </div>
         <div class="input-group">
@@ -76,7 +80,11 @@
         <div class="input-group">
         <div class="profile-section">
           <div>
-            <img class="pic" src="/static/profile.png">
+            {% if c.User.user_image %}
+              <img class="pic" src="{{c.User.user_image}}">  
+            {% else %}
+              <img class="pic" src="/static/profile.png">
+            {% endif %}
           </div>
           <div>
             <p>{{c.commenter}}</p>
@@ -85,19 +93,33 @@
         </div>
         <hr>
         <div>{{c.comment}}</div>
-        <button id="" class="btn">수정</button>
+        {% if user and user.id %}
         <button id="" class="btn" onclick="delfunc()">삭제</button>
+        {% endif %}
 
         <script>
           function delfunc()
           {
             if(confirm('삭제 하시겠습니까?')) {
-              // axios로 삭제 기능 추가
+              // axios로 삭제 기능 추가, 
+               axios.delete(`/comment/delete`, {
+                  data: { // 서버에서 req.body.{} 로 확인할 수 있다.
+                  postId: `{{c.posts_id}}`,
+                  commentId: `{{c.id}}`,
+                  commenterId: `{{c.commenter}}`,
+                },
+                withCredentials: true,
+                })
+                .then(() => {
+                  location.reload();
+                })
+                .catch((err) => {
+                  console.error(err);
+                });
             }
           }
 
         </script>
-
         </div>
       </div>
     {% endfor %}
