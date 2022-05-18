@@ -3,6 +3,7 @@ const multer = require('multer');
 const fs = require('fs');
 const passport = require('passport');
 const bcrypt = require('bcrypt');
+const cookieParser = require('cookie-parser');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const User = require('../models/user');
 
@@ -52,6 +53,10 @@ router.post('/join', isNotLoggedIn, upload.single('img'), async (req, res, next)
 });
 
 router.post('/login', isNotLoggedIn, (req, res, next) => {
+  if(req.body.saveId === "checked")
+  {
+    res.cookie('loginId', req.body.id);
+  }
   passport.authenticate('local', (authError, user, info) => {
     if (authError) {
       console.error(authError);
