@@ -64,7 +64,11 @@
         {% for following in user.Followings %}
           <div class="comment-section">
               <input type="hidden" class="user-follower" value="{{following.id}}">
-              <img class="pic" src="/static/profile.png">
+              {% if following.user_image %}
+                <img class="pic" src="{{following.user_image}}">
+              {% else %}
+                <img class="pic" src="/static/profile.png">
+              {% endif %}
               <p>{{following.nick}}</p>
               <button class="right btn remove-following">취소</button> 
           </div>
@@ -77,7 +81,11 @@
         {% for follower in user.Followers %}
           <div class="comment-section">
               <input type="hidden" class="user-follower" value="{{follower.id}}">
-              <img class="pic" src="/static/profile.png">
+              {% if follower.user_image %}
+                <img class="pic" src="{{follower.user_image}}">
+              {% else %}
+                <img class="pic" src="/static/profile.png">
+              {% endif %}
               <p>{{follower.nick}}</p>
               <button class="right btn remove-follow">삭제</button> 
           </div>

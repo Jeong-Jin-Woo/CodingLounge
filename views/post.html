@@ -1,6 +1,13 @@
 {% extends 'layout.html' %}
 
 {% block content %}
+<head>
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.css">
+</link>
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/monokai.min.css">
+</head>
   <div class="timeline">
     <h1>Q&A</h1>
     <div class="twit">
@@ -17,6 +24,7 @@
             </div>
             <div>
               <p>{{post.UserId}}</p>
+              <p>{{post.user.user_image}}</p>
               <p>{{post.createdAt.toLocaleString('ko-KR')}}</p>
             </div>
             
@@ -31,15 +39,9 @@
         </div>
         <div class="input-group">
           <div class="post-title">{{post.post_title}}</div>
-          <div class="post-code-area">
             <div class="title">코드</div>
-            <pre>
-            <code>
-              {{post.code_content}}
-            </code>
-            </pre>
-          </div>
-            {% if post.post_img %} <!-- 이미지는 있는경우만 보이게 셋팅-->
+            <textarea id="codemirror-textarea" name="content"></textarea>
+            {% if post.post_img %}
               <div class="post-img"><img src="{{post.post_img}}" alt="섬네일"></div>
             {% endif %}
           <div class="post-content">{{post.question_content}}</div>
@@ -47,12 +49,16 @@
       </div>
       {% endif %}
     </div>
-  {% if user and user.id %} <!-- 로그인 했을때만 댓글기능 활성화-->
+  {% if user and user.id %} 
   <div class="twit">
-      <form id="comment-form" action="/commentInsert" method="post">
+      <form id="comment-form" action="/comment/insert" method="post">
         <input type="hidden" name="postId" value="{{post.id}}">
         <div class="comment-section">
-            <img class="pic" src="/static/profile.png">
+            {% if user.user_image %}
+              <img class="pic" src="{{user.user_image}}">  
+            {% else %}
+              <img class="pic" src="/static/profile.png">
+            {% endif %}
             <p>{{user.id}}</p> 
         </div>
         <div class="input-group">
@@ -68,7 +74,11 @@
         <div class="input-group">
         <div class="profile-section">
           <div>
-            <img class="pic" src="/static/profile.png">
+            {% if c.User.user_image %}
+              <img class="pic" src="{{c.User.user_image}}">  
+            {% else %}
+              <img class="pic" src="/static/profile.png">
+            {% endif %}
           </div>
           <div>
             <p>{{c.commenter}}</p>
@@ -77,19 +87,33 @@
         </div>
         <hr>
         <div>{{c.comment}}</div>
-        <button id="" class="btn">수정</button>
+        {% if user and user.id %}
         <button id="" class="btn" onclick="delfunc()">삭제</button>
+        {% endif %}
 
         <script>
           function delfunc()
           {
             if(confirm('삭제 하시겠습니까?')) {
-              // axios로 삭제 기능 추가
+              // axios로 삭제 기능 추가, 
+               axios.delete(`/comment/delete`, {
+                  data: { // 서버에서 req.body.{} 로 확인할 수 있다.
+                  postId: `{{c.posts_id}}`,
+                  commentId: `{{c.id}}`,
+                  commenterId: `{{c.commenter}}`,
+                },
+                withCredentials: true,
+                })
+                .then(() => {
+                  location.reload();
+                })
+                .catch((err) => {
+                  console.error(err);
+                });
             }
           }
 
         </script>
-
         </div>
       </div>
     {% endfor %}
@@ -97,5 +121,24 @@
 
 {% endblock %}
 {% block script %}
-<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.js"></script>
+  <script>
+    var sourcecode = unescapeHtml(`{{post.code_content}}`); 
+    document.addEventListener("DOMContentLoaded", function(){
+      var editor = CodeMirror.fromTextArea(document.getElementById("codemirror-textarea"), {
+        lineNumbers : true,
+        theme: 'monokai',
+        readOnly: true,
+      });
+      editor.setValue(sourcecode);
+    });
+    function unescapeHtml(str){
+      return str.replace(/&amp;/g, '&')
+                .replace(/&lt;/g, '<')
+                .replace(/&gt;/g, '>')
+                .replace(/&quot;/g, '"')
+                .replace(/&#039;/g, "'")
+                .replace(/&#39;/g, "'");
+    }
+  </script>
 {% endblock %}

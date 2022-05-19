@@ -47,7 +47,12 @@ router.get('/join', isNotLoggedIn, (req, res) => {
 });
 
 router.get('/login', isNotLoggedIn, (req, res) => {
-  res.render('login', { title: '로그인' });
+  let userId = "";
+  if(req.cookies['loginId'] !== undefined){
+    console.log("로그인 정보 있음");
+    userId = req.cookies['loginId'];
+  }
+  res.render('login', { title: '로그인' , saveId : userId });
 });
 
 router.get('/post', (req, res) => {
