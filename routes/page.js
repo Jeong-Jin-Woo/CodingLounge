@@ -65,8 +65,11 @@ router.get('/insert', isLoggedIn, (req, res) => {
   }
 });
 
-router.get('/profileupdate', (req, res) => {
-  res.render('profileupdate', { title: '개인정보수정' });
+router.get('/profileUpdate', isLoggedIn, (req, res) => {
+  res.render('profileUpdate', {
+    title: 'profileupdated',
+    UserId:req.user,
+  });
 });
 
 router.get('/follow', (req, res) => {

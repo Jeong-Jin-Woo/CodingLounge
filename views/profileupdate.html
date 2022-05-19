@@ -4,26 +4,26 @@
   <div class="timeline">
     <div>
     <h1>개인정보수정</h1>
-    <form id="profile-form" action="" method="post">
+    <form id="profile-form" action="/auth/profileUpdate" method="post" enctype="multipart/form-data">
         <div class="input-group">  
-            <!-- src user 프로필이미지 가져옴 -->
             <div class="box">
-              <div class="profile-img"><img id="main-img" src="static/profile.png" style="width:200%; height:auto;"></div>
-            </div>
-            <label id="img-label" for="img" class>사진 업로드</label>
-            <input id="img" type="file" accept="image/*">
+              {% if user.user_image %}
+                <img id="profile-img" src="{{user.user_image}}" style="width:100%; height:100%;">
+              {% else %}
+                <img id="profile-img" src="static/profile.png" style="width:100%; height:100%">
+              {% endif %}
+            </div><br>
+            <label id="img-label" for="img">사진 업로드</label>
+            <input id="img" name="img" type="file" accept="image/*">
         </div>
-        <!-- value에 user 프로필 항목 가져옴 -->
         <div class="input-group">     
-          <input id="join-id" class="join-input" type="text" value="아이디" name="id" disabled></div>
+          <p>아이디 </p> <input id="join-id" class="join-input" type="text" value="{{user.id}}" name="id" placeholder="아이디" readonly></div>
         <div class="input-group">
-          <input id="join-email" class="join-input" type="email" value="이메일" name="email"></div>
+          <p> 닉네임 </p> <input id="join-nick" class="join-input" type="text" value="" name="nick" placeholder="{{user.nick}}" required></div>
         <div class="input-group">
-          <input id="join-nick" class="join-input" type="text" value="닉네임" name="nick"></div>
-        <div class="input-group">
-          <input id="join-password" class="join-input" type="password" value="비밀번호" name="password">
+          <p>비밀번호 </p> <input id="join-password" class="join-input" type="password" value="" name="password" placeholder="비밀번호" required>
         </div>
-        <div class="input-group"><button id="join-btn" type="submit" class="btn">가입하기</button></div>
+        <div class="input-group"><button id="join-btn" type="submit" class="btn"onclick="join_check();">수정하기</button></div>
     </form>
     </div>
   </div>
@@ -36,12 +36,29 @@ document.getElementById("img").addEventListener("change", e => {
     if(input.files && input.files[0]) {
       const reader = new FileReader()
       reader.onload = e => {
-          const previewImage = document.getElementById("main-img")
+          const previewImage = document.getElementById("profile-img")
           previewImage.src = e.target.result
       }
-      // reader가 이미지 읽도록 하기
       reader.readAsDataURL(input.files[0]);
     }
   });
+  function join_check(){
+    var form = document.getElementById("profile-form");
+    var form_id = document.getElementById("join-id");
+    var form_nick = document.getElementById("join-nick");
+    var form_password = document.getElementById("join-password");
+
+    if(form_nick.value == ""){
+      form_nick.focus();
+      return false;
+    }
+    if(form_password.value == ""){
+      form_password.focus();
+      return false;
+    }
+
+    form.submit();
+    return true;
+  }
 </script>
 {% endblock %}

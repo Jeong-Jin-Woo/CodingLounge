@@ -11,7 +11,8 @@
       {% else %}
       <img id="profile-img" src="static/profile.png" style="width:130px; height:130px;">
       {% endif %}
-    </div></div>
+    </div>
+  </div>
     <div class="user-name-container">
       <div class="user-name">{{user.nick}}</div>
       <div>
@@ -141,7 +142,7 @@
                   <div>
                     <img width="50px" height="50px" src="/static/mypost_image.png">
                   </div>    
-                  <div class="twit-tags">
+                  <div>
                     <div class="post-hashtag" style="position: relative; margin-top: -1px;">Q&A</div>
                     <div class="post-align" style="color: #8b8e90;">에 #{{post.id}} 게시물을 작성하였습니다.</div>
                     <br>
@@ -179,7 +180,7 @@
                     <div>
                       <img width="35px" height="35px" src="/static/mycomment_image.png" style="position: relative; margin-left: 10px;"/>
                     </div>    
-                    <div class="twit-tags">
+                    <div>
                       <div style="color: #8b8e90;">&nbsp;#{{post.id}} 게시물에 댓글을 남겼습니다.
                         <div style="color:#262626;font-size:14px;font-weight: normal;">{{comment.created_at.toLocaleString('ko-KR')}}</div>
                       </div>
