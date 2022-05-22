@@ -7,7 +7,6 @@ const router = express.Router();
 const sequelize = require("sequelize");
 const passport = require('passport');
 const Op = sequelize.Op;
-var userRealId;
 router.use((req, res, next) => {
   res.locals.user = req.user;
   res.locals.followerCount = req.user ? req.user.Followers.length : 0;
@@ -23,12 +22,21 @@ router.get('/profile', isLoggedIn, async (req, res) => {
         model: User,
         attributes: ['id', 'nick','user_image'],
       },
-      order: [['createdAt', 'DESC']],
+      where:{
+        UserId : req.user.id
+      },
+      order: [['createdAt', 'DESC']],     
     });
     const comments = await Comment.findAll({
-      include:{
+      include:[{
         model: Post,
-        attributes: ['id','post_title'],
+        attributes: ['id','post_title','UserId'],
+      },{
+        model: User,
+        attributes: ['id'],
+      }],
+      where:{
+        commenter: req.user.nick
       },
       order: [['created_at', 'DESC']],
     });

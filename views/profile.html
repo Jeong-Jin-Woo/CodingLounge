@@ -141,32 +141,30 @@
       <div class="userscomments"style="position: relative;margin-top: 16px; text-align: center;">작성 글</div>
       <br>
       {% for post in posts %}
-          {% if post.UserId == user.id %}
-            <div class="twitlist">
-              <div class="twit">
-                <a href="post/{{post.id}}/detail">
-                  <input type="hidden" value="{{user.id}}" class="twit-user-id">    
-                <div class="post-section">
+          <div class="twitlist">
+            <div class="twit">
+              <a href="post/{{post.id}}/detail">
+                <input type="hidden" value="{{user.id}}" class="twit-user-id">    
+              <div class="post-section">
+                <div>
+                  <img width="50px" height="50px" src="/static/mypost_image.png">
+                </div>    
+                <div>
+                  <div class="post-hashtag" style="position: relative; margin-top: -1px;">Q&A</div>
+                  <div class="post-align" style="color: #8b8e90;">에 #{{post.id}} 게시물을 작성하였습니다.</div>
+                  <br>
+                  <div style="color: #000000; position: relative;margin-left: -45px; margin-top: 7px">{{post.post_title}}</div>
+                </div>
+              </div>
+              <div class="post-profile" style="position: relative;margin-top: -45px;">
+                <div class="profile-section" style="display:table-cell; vertical-align: bottom; text-align: right;">
                   <div>
-                    <img width="50px" height="50px" src="/static/mypost_image.png">
-                  </div>    
-                  <div>
-                    <div class="post-hashtag" style="position: relative; margin-top: -1px;">Q&A</div>
-                    <div class="post-align" style="color: #8b8e90;">에 #{{post.id}} 게시물을 작성하였습니다.</div>
-                    <br>
-                    <div style="color: #000000; position: relative;margin-left: -45px; margin-top: 7px">{{post.post_title}}</div>
+                    <p>{{post.createdAt.toLocaleString('ko-KR')}}<br>{{post.UserId}}</p>
                   </div>
                 </div>
-                <div class="post-profile" style="position: relative;margin-top: -45px;">
-                  <div class="profile-section" style="display:table-cell; vertical-align: bottom; text-align: right;">
-                    <div>
-                      <p>{{post.createdAt.toLocaleString('ko-KR')}}<br>{{user.id}}</p>
-                    </div>
-                  </div>
-                </div>
-                </a>
-            </div>
-        {% endif %}
+              </div>
+              </a>
+          </div>
       {% endfor %}
     </div>
       `;
@@ -177,37 +175,31 @@
       <div class="userscomments"style="position: relative;margin-top: 16px; text-align: center;">작성 댓글</div>
       <br>
       {% for comment in comments %}
-        {% for post in posts %}
-          {% if comment.posts_id == post.id %}
-            {% if comment.commenter == user.id %}
-              <div class="twitlist">
-                <div class="twit">
-                  <a href="post/{{comment.posts_id}}/detail">
-                    <input type="hidden" value="{{user.id}}" class="twit-user-id">    
-                  <div class="post-section">
+            <div class="twitlist">
+              <div class="twit">
+                <a href="post/{{comment.posts_id}}/detail">
+                  <input type="hidden" value="{{user.id}}" class="twit-user-id">    
+                <div class="post-section">
+                  <div>
+                    <img width="35px" height="35px" src="/static/mycomment_image.png" style="position: relative; margin-left: 10px;"/>
+                  </div>    
+                  <div>
+                    <div style="color: #8b8e90;">&nbsp;#{{comment.posts_id}} 게시물에 댓글을 남겼습니다.
+                      <div style="color:#262626;font-size:14px;font-weight: normal;">{{comment.created_at.toLocaleString('ko-KR')}}</div>
+                    </div>
+                    <br>
+                    <div style="color: #000000;">&nbsp;{{comment.Post.post_title}}</div>
+                  </div>
+                </div>
+                <div class="post-profile" style="position: relative;margin-top: -45px;">
+                  <div class="profile-section" style="display:table-cell; vertical-align: bottom; text-align: right;">
                     <div>
-                      <img width="35px" height="35px" src="/static/mycomment_image.png" style="position: relative; margin-left: 10px;"/>
-                    </div>    
-                    <div>
-                      <div style="color: #8b8e90;">&nbsp;#{{post.id}} 게시물에 댓글을 남겼습니다.
-                        <div style="color:#262626;font-size:14px;font-weight: normal;">{{comment.created_at.toLocaleString('ko-KR')}}</div>
-                      </div>
-                      <br>
-                      <div style="color: #000000;">&nbsp;{{post.post_title}}</div>
+                      <p><br>{{comment.Post.UserId}}</p>
                     </div>
                   </div>
-                  <div class="post-profile" style="position: relative;margin-top: -45px;">
-                    <div class="profile-section" style="display:table-cell; vertical-align: bottom; text-align: right;">
-                      <div>
-                        <p><br>{{post.UserId}}</p>
-                      </div>
-                    </div>
-                  </div>
-                  </a>
-              </div>
-            {% endif %}
-          {% endif %}
-        {% endfor %}
+                </div>
+                </a>
+            </div>
       {% endfor %}
 
 `;
