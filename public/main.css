@@ -519,7 +519,13 @@ pre code {
 .post-section div{
     display: inline-block;
     font-weight: bold; 
-    margin-right: 10px;
+    margin-right: 10px; 
+}
+.name{
+  width:200px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 .post-hashtag {
   display: inline-block;
