@@ -42,7 +42,7 @@ router.get('/:id/detail', async (req, res, next) => {
     const post = await Post.findOne({ 
       include: {
           model: User,
-          attributes: ['id', 'user_image'],
+          attributes: ['id', 'user_image', 'nick'],
       },
       where : { id : post_id}});
     const comment = await Comment.findAll({ 
