@@ -23,7 +23,7 @@
               {% endif %}
             </div>
             <div>
-              <p>{{post.UserId}}</p>
+              <p>{{post.User.nick}}</p>
               <p>{{post.user.user_image}}</p>
               <p>{{post.createdAt.toLocaleString('ko-KR')}}</p>
             </div>
@@ -59,7 +59,7 @@
             {% else %}
               <img class="pic" src="/static/profile.png">
             {% endif %}
-            <p>{{user.id}}</p> 
+            <p>{{user.nick}}</p> 
         </div>
         <div class="input-group">
             <input id="content" type="type" name="content" placeholder="설명 입력">
@@ -81,7 +81,7 @@
             {% endif %}
           </div>
           <div>
-            <p>{{c.commenter}}</p>
+            <p>{{c.User.nick}}</p>
             <p>{{c.created_at.toLocaleString('ko-KR')}}</p>
           </div>
         </div>
