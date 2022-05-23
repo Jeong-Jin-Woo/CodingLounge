@@ -8,7 +8,7 @@ module.exports = class Comment extends Sequelize.Model {
   static init(sequelize) {
     return super.init({
       comment: {
-        type: Sequelize.STRING(100),
+        type: Sequelize.TEXT('long'),
         allowNull: false,
       },
       created_at: {
@@ -16,6 +16,7 @@ module.exports = class Comment extends Sequelize.Model {
         allowNull: true,
         defaultValue: Sequelize.NOW,
       },
+
     }, {
       sequelize,
       timestamps: false,

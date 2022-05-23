@@ -95,9 +95,8 @@
           function delfunc()
           {
             if(confirm('삭제 하시겠습니까?')) {
-              // axios로 삭제 기능 추가, 
                axios.delete(`/comment/delete`, {
-                  data: { // 서버에서 req.body.{} 로 확인할 수 있다.
+                  data: { 
                   postId: `{{c.posts_id}}`,
                   commentId: `{{c.id}}`,
                   commenterId: `{{c.commenter}}`,

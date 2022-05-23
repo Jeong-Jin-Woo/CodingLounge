@@ -22,9 +22,7 @@ router.post('/insert', async (req, res, next) => {
 
 //댓글 삭제
 router.delete('/delete', isLoggedIn, async(req, res, next) => {
-  //const user = await User.findOne({ where: {id: req.user.id} });
   try {
-    //user가 commenter와 같으면 해당 댓글 삭제
     if (req.user.id === req.body.commenterId) {
       Comment.destroy({
         where:{ 
@@ -33,12 +31,7 @@ router.delete('/delete', isLoggedIn, async(req, res, next) => {
         }
       });
     }
-    // Comment.destroy({
-    //   where:{ 
-    //     id: req.body.commentId,
-    //     posts_id: req.body.postId, 
-    //   }
-    // });
+    
   } catch (error) {
     console.log(error);
     next(error);
