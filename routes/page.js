@@ -2,7 +2,6 @@ const express = require('express');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const { Post, User, Hashtag, Comment, PostHashtag } = require('../models');
 
-const url = require('url');
 const router = express.Router();
 const sequelize = require("sequelize");
 const passport = require('passport');
@@ -101,14 +100,14 @@ router.get('/', async (req, res, next) => {
     ],
       order: [['createdAt', 'DESC']],
     });
+
     const hashtag = await Hashtag.findAll({});
     const postHashtag = await PostHashtag.findAll({});
     res.render('main', {
-      title: 'CodingLounge',
-      posts: posts,
-      hashtag:hashtag,
-      postHashtag:postHashtag,
-
+        title: 'CodingLounge',
+        posts: posts,
+        hashtag:hashtag,
+        postHashtag:postHashtag,
     });
   } catch (err) {
     console.error(err);
@@ -116,8 +115,8 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/hashtag/:hash', async (req, res, next) => {
-  const query = req.params.hash; 
+router.post('/hashtag', async (req, res, next) => {
+  const query = req.body.hash; 
   if (!query) {
     return res.redirect('/');
   }
@@ -126,6 +125,16 @@ router.get('/hashtag/:hash', async (req, res, next) => {
     let posts = [];
     if (hashtag) {
       posts = await hashtag.getPosts({ include: [{ model: User }] });      
+    }else{ //all 의 경우
+      posts = await Post.findAll({
+        include:[
+          {
+            model: User,
+            attributes: ['id', 'nick', 'user_image'],
+          },
+      ],
+        order: [['createdAt', 'DESC']],
+      });
     }
 
     return res.send(posts);

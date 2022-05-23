@@ -42,7 +42,7 @@
             <div class="title">코드</div>
             <textarea id="codemirror-textarea" name="content"></textarea>
             {% if post.post_img %}
-              <div class="post-img"><img src="{{post.post_img}}" alt="섬네일"></div>
+              <div class="post-img"><img src="{{post.post_img}}" alt="섬네일" style="width:80%; height:auto;"></div>
             {% endif %}
           <div class="post-content">{{post.question_content}}</div>
         </div>
@@ -121,6 +121,7 @@
 {% endblock %}
 {% block script %}
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.js"></script>
+<script type="text/javascript" src="https://codemirror.net/mode/javascript/javascript.js"></script>
   <script>
     var sourcecode = unescapeHtml(`{{post.code_content}}`); 
     document.addEventListener("DOMContentLoaded", function(){
@@ -131,6 +132,7 @@
       });
       editor.setValue(sourcecode);
     });
+
     function unescapeHtml(str){
       return str.replace(/&amp;/g, '&')
                 .replace(/&lt;/g, '<')
