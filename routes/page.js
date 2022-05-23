@@ -51,16 +51,15 @@ router.get('/profile', isLoggedIn, async (req, res) => {
 });
 
 router.get('/join', isNotLoggedIn, (req, res) => {
-  res.render('join', { title: '회원가입' });
+  res.render('join', { title: 'join us' });
 });
 
 router.get('/login', isNotLoggedIn, (req, res) => {
   let userId = "";
   if(req.cookies['loginId'] !== undefined){
-    console.log("로그인 정보 있음");
     userId = req.cookies['loginId'];
   }
-  res.render('login', { title: '로그인' , saveId : userId });
+  res.render('login', { title: 'login' , saveId : userId });
 });
 
 router.get('/post', (req, res) => {
@@ -69,8 +68,7 @@ router.get('/post', (req, res) => {
 
 router.get('/insert', isLoggedIn, (req, res) => {
   try {
-  console.log("insert 호출");
-  res.render('insert', { title: '글 작성',
+  res.render('insert', { title: 'posting',
     UserId:req.user,
 });
   }catch(err){
@@ -83,10 +81,6 @@ router.get('/profileUpdate', isLoggedIn, (req, res) => {
     title: 'profileupdated',
     UserId:req.user,
   });
-});
-
-router.get('/follow', (req, res) => {
-  res.render('follow', { title: '팔로우&팔로잉 한 유저 글 확인' });
 });
 
 router.get('/', async (req, res, next) => {
@@ -109,7 +103,7 @@ router.get('/', async (req, res, next) => {
     const hashtag = await Hashtag.findAll({});
     const postHashtag = await PostHashtag.findAll({});
     res.render('main', {
-      title: 'prj-name',
+      title: 'CodingLounge',
       posts: posts,
       hashtag:hashtag,
       postHashtag:postHashtag,
