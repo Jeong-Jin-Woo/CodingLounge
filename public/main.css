@@ -6,6 +6,10 @@ html, body {
 .profile a {color: #fff; text-decoration: none; outline: none
 
 }
+
+a {
+  text-decoration-line: none;
+}
 .profile a:hover, .profile a:active {text-decoration: none; color:#fff;}
 
 .btn {
