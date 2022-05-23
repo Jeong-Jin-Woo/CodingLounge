@@ -120,20 +120,17 @@ router.get('/', async (req, res, next) => {
     next(err);
   }
 });
-///:hash
+
 router.get('/hashtag/:hash', async (req, res, next) => {
-  const query = req.params.hash;
-  console.log("hashtag req:"+query);
+  const query = req.params.hash; 
   if (!query) {
     return res.redirect('/');
   }
   try {
     const hashtag = await Hashtag.findOne({ where: { title: query} });
     let posts = [];
-    let hashtagTitle;
     if (hashtag) {
-      posts = await hashtag.getPosts({ include: [{ model: User }] });
-      console.log("postsposts",posts);
+      posts = await hashtag.getPosts({ include: [{ model: User }] });      
     }
 
     return res.send(posts);

@@ -59,7 +59,6 @@
 {% endblock %}
 
 {% block script %}
-  <!--add codemirror library  -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function(){
@@ -114,22 +113,6 @@
     document.querySelector(".showSelectedhash").innerHTML=`${selectedhash}`;
     
   }
-//  document.querySelector(".hashtagClick").addEventListener("click",e=>{    
-//     selectedhash=e.target.innerText;
-//     console.log("selectedhash",selectedhash);
-//     e.target.style.backgroundColor="#2E75B6";
-//     e.target.style.color="white";
-//     document.querySelector(".showSelectedhash").innerHTML=`${selectedhash}`;
-//   });
-
-  // document.getElementById("twit-btn").addEventListener("click",e=>{
-  //   e.preventDefault();
-  //   if(selectedhash==null){
-  //     alert("해시태그를 선택하세요");     
-  //   }
-   
-  // })
-
   </script>
 
 <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>

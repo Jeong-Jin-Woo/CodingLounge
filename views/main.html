@@ -12,17 +12,17 @@
   </div>
   <div class="twits">
     <div class="hashtag-list">
-      <!-- SELECT 값 추가-->
+   
       {% set hashs = ['JAVA','C++', 'C','JavaScript','Nodejs','Os','DB','보안','HTML/CSS','UI/UX'] %}  
     
-      {% for hash in hashs %}<!-- 버튼을 누르면  onclick이벤트로 axios-->
+      {% for hash in hashs %}
         <button class="hashtag-item" onclick="filtering( `{{hash}}` )" >#{{hash}}</button>
       {% endfor %}
 
       {% for c in comment %}                        
         <button>{{c.comment}}</button>
       {% endfor %}  
-    <!-- </form> -->
+   
     </div>
   </div>
   <div class="twitlist">
@@ -118,8 +118,7 @@
       console.log("hash",hash)
     axios.get(`/hashtag/${hash}`)
     .then((res)=>{
-      console.log( res.data);
-      console.log("twitlist",twitlist);
+     
       let temp=``;
       let twitsInfo = res.data;
      
