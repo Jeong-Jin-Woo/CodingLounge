@@ -60,12 +60,13 @@
 
 {% block script %}
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.js"></script>
+  <script type="text/javascript" src="https://codemirror.net/mode/javascript/javascript.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function(){
       var editor = CodeMirror.fromTextArea(document.getElementById("codemirror-textarea"), {
         lineNumbers : true,
         theme: 'monokai',
-        mode : 'test/x-javascript',
+        mode : 'javascript',
         value : "console.log('hello');"
       });
     });

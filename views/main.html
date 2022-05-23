@@ -13,7 +13,7 @@
   <div class="twits">
     <div class="hashtag-list">
    
-      {% set hashs = ['JAVA','C++', 'C','JavaScript','Nodejs','Os','DB','보안','HTML/CSS','UI/UX'] %}  
+      {% set hashs = ['ALL','JAVA','C++', 'C','JavaScript','Nodejs','Os','DB','보안','HTML/CSS','UI/UX'] %}  
     
       {% for hash in hashs %}
         <button class="hashtag-item" onclick="filtering( `{{hash}}` )" >#{{hash}}</button>
@@ -115,14 +115,13 @@
   const twitlist = document.querySelector(".twitlist");
 
   function filtering(hash){
-      console.log("hash",hash)
     axios.post(`/hashtag`,{hash : hash})
     .then((res)=>{
      
       let temp=``;
       let twitsInfo = res.data;
      
-     twitsInfo.map((info,index)=>{
+     twitsInfo?.map((info,index)=>{
       let date = new Date(info.createdAt);
      
       let datedays = date.toLocaleDateString('ko-KR'); 

@@ -117,7 +117,7 @@ router.get('/', async (req, res, next) => {
 
 router.post('/hashtag', async (req, res, next) => {
   const query = req.body.hash; 
-  if (!query) {
+  if (!query || query == "ALL") {
     return res.redirect('/');
   }
   try {
