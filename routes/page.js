@@ -36,7 +36,7 @@ router.get('/profile', isLoggedIn, async (req, res) => {
         attributes: ['id'],
       }],
       where:{
-        commenter: req.user.nick
+        commenter: req.user.id
       },
       order: [['created_at', 'DESC']],
     });
