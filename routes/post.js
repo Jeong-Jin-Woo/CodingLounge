@@ -115,8 +115,8 @@ router.get('/follow/:id', isLoggedIn, async(req, res, next) => {
 
 const upload2 = multer();
 router.post('/insert', isLoggedIn, upload2.none(), async (req, res, next) => { 
-  const { title,
-    story, content } = req.body;
+  const { title, story, content } = req.body;
+ 
     const postNum = await Post.count(); 
     const user = await User.findOne({ where : { id : req.user.id}});
     
