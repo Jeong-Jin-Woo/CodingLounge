@@ -19,9 +19,9 @@
             </div>
             <div class="input-group">
               {% if saveId %}
-                <input type="checkbox" name="saveId" value="checked" checked>아이디저장
+                <input type="checkbox" name="saveId" value="checked" class="checkId" checked>아이디저장
               {% else %}
-                <input type="checkbox" name="saveId" value="checked">아이디저장
+                <input type="checkbox" name="saveId" value="checked" class="checkId" >아이디저장
               {% endif %}
             </div>
             <div class="input-group">
@@ -29,16 +29,11 @@
             </div>
             <br>
             <div class="input-group">
-              <a>아이디찾기</a> | <a href="/join">회원가입</a>
+              <a href="/join">회원가입</a>
             </div>
           </form>
         </div>
     </div>   
   </div>
 </div>
-
-{% endblock %}
-
-{% block script %}
-<!-- FIX :: 아이디찾기, 회원가입 로그인 유효성검사추가 -->
 {% endblock %}

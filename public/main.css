@@ -527,6 +527,12 @@ pre code {
   text-overflow:ellipsis;
   white-space:nowrap;
 }
+.name_post{
+  width:300px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
 .post-hashtag {
   display: inline-block;
   padding: 0 5px;
