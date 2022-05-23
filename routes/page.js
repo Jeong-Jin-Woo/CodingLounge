@@ -28,13 +28,14 @@ router.get('/profile', isLoggedIn, async (req, res) => {
       order: [['createdAt', 'DESC']],     
     });
     const comments = await Comment.findAll({
-      include:[{
+      include:{
         model: Post,
         attributes: ['id','post_title','UserId'],
-      },{
-        model: User,
-        attributes: ['id'],
-      }],
+        include:{
+          model: User,
+          attributes: ['id', 'nick'],
+        },
+      },
       where:{
         commenter: req.user.id
       },
@@ -43,7 +44,7 @@ router.get('/profile', isLoggedIn, async (req, res) => {
     res.render('profile', {
       title: 'profile',
       posts: posts,
-      comments: comments,
+      comments: comments
     });
   } catch (err) {
     console.error(err);
@@ -115,9 +116,9 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.post('/hashtag', async (req, res, next) => {
-  const query = req.body.hash; 
-  if (!query || query == "ALL") {
+router.get('/hashtag/:hash', async (req, res, next) => {
+  const query = req.params.hash; 
+  if (!query) {
     return res.redirect('/');
   }
   try {
