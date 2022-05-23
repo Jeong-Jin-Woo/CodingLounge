@@ -115,8 +115,8 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/hashtag/:hash', async (req, res, next) => {
-  const query = req.params.hash; 
+router.post('/hashtag', async (req, res, next) => {
+  const query = req.body.hash; 
   if (!query) {
     return res.redirect('/');
   }

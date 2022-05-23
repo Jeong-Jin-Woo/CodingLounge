@@ -116,7 +116,7 @@
 
   function filtering(hash){
       console.log("hash",hash)
-    axios.get(`/hashtag/${hash}`)
+    axios.post(`/hashtag`,{hash : hash})
     .then((res)=>{
      
       let temp=``;
