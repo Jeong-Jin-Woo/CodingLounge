@@ -39,7 +39,7 @@
           </div>
           <div>
             <input type="hidden" value="{{post.User.id}}" class="twit-user-id">
-            <p class="inline">{{post.UserId}}</p>
+            <p class="inline">{{post.User.nick}}</p>
             {% if user.id %}
               {% if not followerIdList.includes(post.User.id) and post.User.id !== user.id %}
                 <button class="twit-follow inline">팔로우</button>
