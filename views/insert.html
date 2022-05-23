@@ -36,6 +36,7 @@
           <div class="input-group">
             <label>태그</label>           
               <div class="showSelectedhash">              
+                  <div class="eachHash"><input type="radio" name="hashtagss" value="Q&A" checked>Q&A</div>
                   <div class="eachHash"><input type="radio" name="hashtagss" value="JAVA">JAVA</div>
                   <div class="eachHash"><input type="radio" name="hashtagss" value="C++">C++</div>
                   <div class="eachHash"><input type="radio" name="hashtagss" value="C">C</div>
@@ -118,17 +119,28 @@
     var form = document.getElementById("post-form");
     var titleValue = document.getElementById("title").value;
     var storyValue = document.getElementById("story").value;
-    var codeValue = document.getElementById("codemirror-textarea").value;
-    if(titleValue=="" && storyValue==""){
-      alert("내용을 입력하세요");
+    var codeValue = document.getElementById("codemirror-textarea").value;    
+    var checkbox = document.getElementsByName("hashtagss");
+    var flag;
+    for(var i=0;i<checkbox.length;i++){
+            if(checkbox[i].checked){
+              flag=true;
+             break;
+      }else{
+        flag=false;
+      }
+
+    }
+    if(titleValue=="" && storyValue=="" && flag){
+      alert("내용을 입력하고 해시태그를 선택하세요");
       return false;
     
     }
-    if(titleValue!=="" && storyValue!==""){
+    if(titleValue!=="" && storyValue!=="" && flag){
       form.submit();
       return true;
     }
-    
+          
     
     
  
