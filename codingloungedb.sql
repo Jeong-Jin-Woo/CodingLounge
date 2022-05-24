@@ -122,7 +122,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `codingloungedb`.`posthashtag`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `codingloungedb`.`posthashtag` (
-  `createAt` DATETIME NOT NULL,
+  `createdAt` DATETIME NOT NULL,
   `updatedAt` DATETIME NULL DEFAULT NULL,
   `HashtagId` VARCHAR(45) NOT NULL,
   `postId` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL,
@@ -138,6 +138,7 @@ CREATE TABLE IF NOT EXISTS `codingloungedb`.`posthashtag` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
