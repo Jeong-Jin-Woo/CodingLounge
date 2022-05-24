@@ -102,7 +102,7 @@ router.get('/follow/:id', isLoggedIn, async(req, res, next) => {
     const postHashtag = await PostHashtag.findAll({});
    
     res.render('follow', {
-      title: 'prj-name',
+      title: 'follow',
       posts: followPosts,
       hashtag:hashtag,
       postHashtag:postHashtag,
