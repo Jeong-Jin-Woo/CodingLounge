@@ -102,7 +102,7 @@ router.get('/', async (req, res, next) => {
     const hashtag = await Hashtag.findAll({});
     const postHashtag = await PostHashtag.findAll({});
     res.render('main', {
-      title: 'prj-name',
+      title: 'CodingLounge',
       posts: posts,
       hashtag:hashtag,
       postHashtag:postHashtag,
