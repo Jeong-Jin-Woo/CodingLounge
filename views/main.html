@@ -56,7 +56,7 @@
             {% for oneposthashtag in postHashtag %} 
             {% for onehashtag in hashtag %}
               {% if post.id==oneposthashtag.PostId and oneposthashtag.HashtagId==onehashtag.id %}              
-                  <div class="hashtag-item">{{onehashtag.title}}</div> 
+                  <div class="hashtag-item" style="min-width:37px;">{{onehashtag.title}}</div> 
               {% endif %}
             {% endfor %}
            {% endfor %}  
@@ -155,9 +155,9 @@
       <div class="post-info">
         <div class="twit-authorTags">
         <div class="twit-author">#${info.id}</div>
-        <div class="twit-tags">
-          <div class="hashtag-item">${hash}</div>
-        </div>
+        <div class="twit-tags">          
+          <div class="hashtag-item" style="min-width:37px">${hash}</div>          
+          </div>
         </div>
         <div class="twit-content">${info.post_title}</div>
       </div>

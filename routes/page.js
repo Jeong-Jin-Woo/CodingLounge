@@ -84,7 +84,6 @@ router.get('/profileUpdate', isLoggedIn, (req, res) => {
 });
 
 router.get('/', async (req, res, next) => {
-  
   passport.serializeUser(function(id,done){
     User.findById(id,function(err,user){
       done(err,user);
@@ -95,7 +94,7 @@ router.get('/', async (req, res, next) => {
       include:[
         {
           model: User,
-          attributes: ['id', 'nick', 'user_image'],
+          attributes: ['id', 'nick'],
         },
     ],
       order: [['createdAt', 'DESC']],
@@ -103,10 +102,11 @@ router.get('/', async (req, res, next) => {
     const hashtag = await Hashtag.findAll({});
     const postHashtag = await PostHashtag.findAll({});
     res.render('main', {
-        title: 'CodingLounge',
-        posts: posts,
-        hashtag:hashtag,
-        postHashtag:postHashtag,
+      title: 'CodingLounge',
+      posts: posts,
+      hashtag:hashtag,
+      postHashtag:postHashtag,
+
     });
   } catch (err) {
     console.error(err);
