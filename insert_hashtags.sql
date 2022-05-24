@@ -1,0 +1,11 @@
+INSERT INTO `codingloungedb`.`hashtags` (`id`, `title`, `createdAt`, `updatedAt`) VALUES ('1', 'Q&A', '1000-01-01 00:00:00', '1000-01-01 00:00:00');
+INSERT INTO `codingloungedb`.`hashtags` (`id`, `title`, `createdAt`, `updatedAt`) VALUES ('2', 'JAVA', '1000-01-01 00:00:00', '1000-01-01 00:00:00');
+INSERT INTO `codingloungedb`.`hashtags` (`id`, `title`, `createdAt`, `updatedAt`) VALUES ('3', 'C++', '1000-01-01 00:00:00', '1000-01-01 00:00:00');
+INSERT INTO `codingloungedb`.`hashtags` (`id`, `title`, `createdAt`, `updatedAt`) VALUES ('4', 'C', '1000-01-01 00:00:00', '1000-01-01 00:00:00');
+INSERT INTO `codingloungedb`.`hashtags` (`id`, `title`, `createdAt`, `updatedAt`) VALUES ('5', 'JavaScript', '1000-01-01 00:00:00', '1000-01-01 00:00:00');
+INSERT INTO `codingloungedb`.`hashtags` (`id`, `title`, `createdAt`, `updatedAt`) VALUES ('6', 'Nodejs', '1000-01-01 00:00:00', '1000-01-01 00:00:00');
+INSERT INTO `codingloungedb`.`hashtags` (`id`, `title`, `createdAt`, `updatedAt`) VALUES ('7', 'OS', '1000-01-01 00:00:00', '1000-01-01 00:00:00');
+INSERT INTO `codingloungedb`.`hashtags` (`id`, `title`, `createdAt`, `updatedAt`) VALUES ('8', 'DB', '1000-01-01 00:00:00', '1000-01-01 00:00:00');
+INSERT INTO `codingloungedb`.`hashtags` (`id`, `title`, `createdAt`, `updatedAt`) VALUES ('9', '보안', '1000-01-01 00:00:00', '1000-01-01 00:00:00');
+INSERT INTO `codingloungedb`.`hashtags` (`id`, `title`, `createdAt`, `updatedAt`) VALUES ('10', 'HTML/CSS', '1000-01-01 00:00:00', '1000-01-01 00:00:00');
+INSERT INTO `codingloungedb`.`hashtags` (`id`, `title`, `createdAt`, `updatedAt`) VALUES ('11', 'UI/UX', '1000-01-01 00:00:00', '1000-01-01 00:00:00');
