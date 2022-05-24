@@ -100,13 +100,8 @@ router.get('/', async (req, res, next) => {
     ],
       order: [['createdAt', 'DESC']],
     });
-    let getPost;
-    let hashtag, postHashtag=[];
-    for(var i =0;i<posts.length;i++){
-      getPost = await Post.findOne({where: { id: posts[i].id }});
-      hashtag = await getPost.getHashtags();
-      postHashtag.push(hashtag.title);
-    }
+    const hashtag = await Hashtag.findAll({});
+    const postHashtag = await PostHashtag.findAll({});
     res.render('main', {
         title: 'CodingLounge',
         posts: posts,

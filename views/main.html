@@ -131,8 +131,7 @@
       temp +=
       ` <div class="twit">
       <a href="post/${info.id}/detail">
-      <input type="hidden" value="${info.User.id}" class="twit-user-id">
-      <input type="hidden" value="${info.User.user_image}" class="twit-user-id">
+      <input type="hidden" value="${info.User.nick}" class="twit-user-id">
       <div class="post-profile">
         <div class="profile-section">
           <div>
@@ -143,7 +142,7 @@
             {% endif %}
           </div>
           <div>
-            <p class="inline">${info.UserId}</p>
+            <p class="inline">${info.User.nick}</p>
             {% if info.UserId != "" %}
               {% if not followerIdList.includes(info.User.id) and info.User.id !== user.id %}
                 <button class="twit-follow inline">팔로우</button>
