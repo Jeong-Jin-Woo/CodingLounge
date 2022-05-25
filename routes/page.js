@@ -125,7 +125,7 @@ router.post('/hashtag', async (req, res, next) => {
     if (hashtag) {
       posts = await hashtag.getPosts({ include: [{ model: User }] });      
     }
-    if(hashtag=="Q&A"){ //all 의 경우
+    if(hashtag=="Q&A"){
       posts = await Post.findAll({
         include:[
           {
