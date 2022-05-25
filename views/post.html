@@ -26,8 +26,7 @@
               <p>{{post.User.nick}}</p>
               <p>{{post.user.user_image}}</p>
               <p>{{post.createdAt.toLocaleString('ko-KR')}}</p>
-            </div>
-            
+            </div>          
           </div>
         </a>
         <hr>
@@ -88,17 +87,17 @@
         <hr>
         <div>{{c.comment}}</div>
         {% if user and user.id %}
-        <button id="" class="btn" onclick="delfunc()">삭제</button>
+        <button id=`{{c.id}}` class="btn" onclick="delfunc(`{{c.id}}`)">삭제</button>
         {% endif %}
 
         <script>
-          function delfunc()
+          function delfunc(commentId)
           {
             if(confirm('삭제 하시겠습니까?')) {
                axios.delete(`/comment/delete`, {
                   data: { 
                   postId: `{{c.posts_id}}`,
-                  commentId: `{{c.id}}`,
+                  commentId: commentId,
                   commenterId: `{{c.commenter}}`,
                 },
                 withCredentials: true,
@@ -110,6 +109,7 @@
                   console.error(err);
                 });
             }
+          
           }
 
         </script>
