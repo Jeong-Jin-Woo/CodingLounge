@@ -163,10 +163,14 @@ router.get('/search', async (req, res, next) => {
       ],
       order: [['createdAt', 'DESC']],
     });
-
+    const hashtag = await Hashtag.findAll({});
+    const postHashtag = await PostHashtag.findAll({});
     return res.render('main', {
       title: `Q&A`,
       posts: posts,
+      hashtag:hashtag,
+      postHashtag:postHashtag,
+
     });
   } catch (error) {
     
