@@ -120,7 +120,7 @@
     .then((res)=>{
      
       let temp=``;
-      let twitsInfo = res.data;
+      let twitsInfo = res.data.reverse();
      
      twitsInfo?.map((info,index)=>{
       let date = new Date(info.createdAt);
@@ -142,11 +142,7 @@
           </div>
           <div>
             <p class="inline">${info.User.nick}</p>
-            {% if info.UserId != "" %}
-              {% if not followerIdList.includes(info.User.id) and info.User.id !== user.id %}
-                <button class="twit-follow inline">팔로우</button>
-              {% endif %}
-            {% endif %}
+          
             <p>${datedays}&nbsp;${datetime}</p>
           </div>
         </div>
