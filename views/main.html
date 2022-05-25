@@ -127,7 +127,10 @@
      
       let datedays = date.toLocaleDateString('ko-KR'); 
       let datetime = date.toLocaleTimeString('ko-KR');
-     
+      let imgsrc = info.User.user_image;
+      if(imgsrc==null){
+        imgsrc='/static/profile.png';
+      }
       temp +=
       ` <div class="twit">
       <a href="post/${info.id}/detail">
@@ -135,11 +138,7 @@
       <div class="post-profile">
         <div class="profile-section">
           <div>
-            {% if info.User.user_image != "" %}
-              <img class="pic" src="${info.User.user_image}">  
-            {% else %}
-              <img class="pic" src="/static/profile.png">
-            {% endif %}
+                <img class="pic" src="${imgsrc}">                   
           </div>
           <div>
             <p class="inline">${info.User.nick}</p>
