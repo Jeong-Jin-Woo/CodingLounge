@@ -125,15 +125,15 @@ CREATE TABLE IF NOT EXISTS `codingloungedb`.`posthashtag` (
   `createdAt` DATETIME NOT NULL,
   `updatedAt` DATETIME NULL DEFAULT NULL,
   `HashtagId` VARCHAR(45) NOT NULL,
-  `postId` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL,
-  PRIMARY KEY (`HashtagId`, `postId`),
+  `PostId` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL,
+  PRIMARY KEY (`HashtagId`, `PostId`),
   INDEX `fk_posthashtag_hashtags1_idx` (`HashtagId` ASC) VISIBLE,
-  INDEX `fk_posthashtag_posts1_idx` (`postId` ASC) VISIBLE,
+  INDEX `fk_posthashtag_posts1_idx` (`PostId` ASC) VISIBLE,
   CONSTRAINT `fk_posthashtag_hashtags1`
     FOREIGN KEY (`HashtagId`)
     REFERENCES `codingloungedb`.`hashtags` (`id`),
   CONSTRAINT `fk_posthashtag_posts1`
-    FOREIGN KEY (`postId`)
+    FOREIGN KEY (`PostId`)
     REFERENCES `codingloungedb`.`posts` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4

@@ -8,6 +8,8 @@ const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const User = require('../models/user');
 const router = express.Router();
 const url = require('url');
+const { Op } = require('sequelize');
+
 
 try {
   fs.readdirSync('profileimg');
@@ -75,11 +77,6 @@ router.post('/profileUpdate', isLoggedIn, upload.single('img'), async (req, res,
   
   const {  id,nick, password } = req.body;
   const img = req.file;
-
-  const exUser = await User.findOne({ where: { nick } });
-  if (exUser) {
-    return res.send("<script>alert('이미 사용중인 닉네임입니다.');location.href='/profileUpdate';</script>");
-  }
 
   try {
     if(img==null){
