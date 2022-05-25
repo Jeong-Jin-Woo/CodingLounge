@@ -7,9 +7,13 @@ html, body {
 
 }
 
-a {
-  text-decoration-line: none;
-}
+a { text-decoration: none; color: black; text-decoration-line: none; }   
+ a:visited { text-decoration: none; text-decoration-line: none;}   
+ a:hover { text-decoration: none; }  
+ a:focus { text-decoration: none; }  
+ a:hover, a:active { text-decoration: none; }
+
+
 .profile a:hover, .profile a:active {text-decoration: none; color:#fff;}
 
 .btn {

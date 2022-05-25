@@ -79,7 +79,6 @@
   if (document.getElementById('img')) {
     document.getElementById('img').addEventListener('change', function(e) {
       const formData = new FormData();
-      console.log(this, this.files);
       formData.append('img', this.files[0]);
       axios.post('/post/img', formData)
         .then((res) => {
@@ -95,7 +94,6 @@
   document.querySelectorAll('.twit-follow').forEach(function(tag) {
     tag.addEventListener('click', function() {
       const myId = document.querySelector('#my-id').value;
-      console.log("myId :"+myId);
       if (myId) {
         const userId = tag.parentNode.querySelector('.twit-user-id').value;
         console.log("userId :"+userId);
